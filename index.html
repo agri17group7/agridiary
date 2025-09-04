@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agriculture Dept, NSTU</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root {
+    --primary: #0ea5e9;
+    --secondary: #22c55e;
+    --dark: #0f172a;
+    --light: #f8fafc;
+    --card-bg: #ffffff;
+    --shadow: 0 10px 25px rgba(0,0,0,0.15);
+    --hover-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;}
+
+  body{
+    background: var(--light);
+    color: #334155;
+  }
+
+  .container{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* Sidebar */
+  .sidebar{
+    width:280px;
+    background: var(--dark);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:20px 0;
+    transition: width 0.3s;
+  }
+
+  .logo{
+    text-align:center;
+    margin-bottom:30px;
+  }
+  .logo img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    border:3px solid var(--primary);
+    transition: transform 0.3s;
+  }
+  .logo img:hover{transform: rotate(15deg);}
+  .logo h1{
+    font-size:1.3rem;
+    margin-top:12px;
+  }
+
+  .sidebar-menu{
+    list-style:none;
+    width:100%;
+    padding:0;
+  }
+
+  .sidebar-menu li{width:100%;}
+  .sidebar-menu a{
+    display:flex;
+    align-items:center;
+    padding:14px 25px;
+    text-decoration:none;
+    color: rgba(255,255,255,0.85);
+    font-weight:500;
+    transition: all 0.3s;
+    border-radius:0 25px 25px 0;
+  }
+  .sidebar-menu a:hover, .sidebar-menu a.active{
+    background: rgba(14,165,233,0.2);
+    color:#fff;
+    border-left: 4px solid var(--primary);
+  }
+  .sidebar-menu i{margin-right:15px;}
+
+  /* Main Content */
+  .main-content{flex:1; overflow-y:auto;}
+
+  /* Header */
+  .header{
+    background:url('agriculture dept.jpg') center/cover no-repeat;
+    height:350px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .header::after{
+    content:'';
+    position:absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(0,0,0,0.45);
+    z-index:0;
+  }
+  .header h1{
+    color:white;
+    font-size:3rem;
+    text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+    position:relative;
+    z-index:1;
+    animation: slideDown 1.2s ease-out;
+  }
+
+  @keyframes slideDown{
+    0%{transform: translateY(-50px); opacity:0;}
+    100%{transform: translateY(0); opacity:1;}
+  }
+
+  /* Content Section */
+  .content{
+    padding:50px 30px;
+    max-width:1200px;
+    margin:auto;
+  }
+  .section-title{
+    font-size:2rem;
+    color: var(--dark);
+    margin-bottom:35px;
+    display:inline-block;
+    position:relative;
+  }
+  .section-title::after{
+    content:'';
+    width:60px;
+    height:4px;
+    background: var(--primary);
+    display:block;
+    margin-top:8px;
+    border-radius:2px;
+  }
+
+  /* Grid Cards */
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+  }
+
+  .card{
+    background: var(--card-bg);
+    border-radius:20px;
+    padding:25px 20px;
+    text-align:center;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .card:hover{
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: var(--hover-shadow);
+  }
+
+  .card img{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:15px;
+    transition: transform 0.3s;
+  }
+  .card img:hover{transform: scale(1.1);}
+
+  .badge{
+    display:inline-block;
+    background: var(--primary);
+    color:white;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:13px;
+    margin-bottom:12px;
+  }
+  .card h3{
+    font-size:1.2rem;
+    margin-bottom:6px;
+    color:var(--dark);
+  }
+  .card p{
+    font-size:14px;
+    color:#555;
+  }
+
+  /* Footer / optional */
+  footer{
+    text-align:center;
+    padding:20px;
+    background:#0f172a;
+    color:white;
+    margin-top:40px;
+  }
+
+  /* Responsive */
+  @media(max-width:768px){
+    .sidebar{width:60px;}
+    .sidebar-menu a span{display:none;}
+    .logo h1{display:none;}
+    .header h1{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <img src="agriculture dept.jpg" alt="NSTU Logo">
+      <h1>Agriculture Dept</h1>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="#" class="active"><i class="fas fa-landmark"></i> History</a></li>
+      <li><a href="#"><i class="fas fa-chalkboard-teacher"></i> Teachers</a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> 1st Year</a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> 2nd Year</a></li>
+      <li><a href="3rd year student.html"><i class="fas fa-user-graduate"></i> 3rd Year</a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> 4th Year</a></li>
+    </ul>
+  </aside>
+
+<!-- Main -->
+    <main class="main-content">
+      <div class="header">
+        <h1>Department of Agriculture</h1>
+      </div>
+
+      <div class="content">
+        <!-- Teachers -->
+        <section id="teachers">
+          <h2 class="section-title"><i class="fas fa-users"></i> Teachers</h2>
+          <div class="grid">
+            <!-- Teacher Cards -->
+            <div class="card">
+              <span class="badge">Professor</span>
+              <img src="gazi sir.jpg" alt="Dr. Gazi Md.Mohsin">
+              <h3>Dr. Gazi Md.Mohsin</h3>
+              <p>Head of Department,Agriculture</p>
+            </div>
+            <div class="card">
+              <span class="badge">Professor</span>
+              <img src="atik sir.jpg" alt="Dr. Md.Atiqur Rahman Bhuiyan">
+              <h3>Dr. Md.Atiqur Rahman Bhuiyan</h3>
+              <p>plant breeding </p>
+            </div>
+            <div class="card">
+              <span class="badge">Associate Professor</span>
+              <img src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="Dr. Pijush kanti Jhan">
+              <h3>Dr. Pijush kanti Jhan</h3>
+              <p>Bachelor`s; Master`s,Agriculture,Entomology.
+                Doctor of Philosohy(PhD),Insect Molecular Physiology</p>
+            </div>
+            <div class="card">
+              <span class="badge">Associate Professor</span>
+              <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Dr. Mehede Hasan Rubel">
+              <h3>Dr. Mehede Hasan Rubel</h3>
+              <p>Bachelor of Science in Agriculture and Master of Science in Genetics and Plant Breeding,Agriculture.Doctor of Philosophy(PhD),Horticulture(Major in Biotechnology)</p>
+            </div>
+             <div class="card">
+              <span class="badge">Associate Professor</span>
+              <img src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="DR. Kawsar Hossen">
+              <h3>DR. Kawsar Hossen</h3>
+              <p>Agricultural Horticulture</p>
+            </div>
+            <div class="card">
+              <span class="badge">Assistant Professor</span>
+              <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Dr. Mohammaed Nuruzzaman">
+              <h3>Dr. Mohammaed Nuruzzaman</h3>
+              <p></p>
+            </div>
+            <div class="card">
+              <span class="badge">Assistant Professor</span>
+              <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Md. Shariful islam">
+              <h3>Md. Shariful islam</h3>
+              <p>Agricultural Extension</p>
+            </div>
+           <div class="card">
+              <span class="badge">Assistant Professor</span>
+              <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Md.Shafiqul islam">
+              <h3>Md.Shafiqul islam</h3>
+              <p>Agricultural Biotechnology</p>
+            </div>
+            <div class="card">
+              <span class="badge">Assistant Professor</span>
+              <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Sabia Khan">
+              <h3>Sabia Khan </h3>
+              <p>Plant pathology</p>
+            </div>
+             <div class="card">
+              <span class="badge">Assistant Professor</span>
+              <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Dr.Nusrat jahan Methela">
+              <h3>Dr.Nusrat jahan Methela</h3>
+              <p>Agricultural Economics</p>
+            </div>
+            <div class="card">
+              <span class="badge">Assistant Professor</span>
+              <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Shohrab Hossain">
+              <h3>Shohrab Hossain</h3>
+              <p>Agroforestry</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+</div>
+</body>
+</html>
