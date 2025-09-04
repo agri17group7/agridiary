@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Syllabus Download - Agriculture Dept, NSTU</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+  --primary: #0ea5e9;
+  --secondary: #22c55e;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 25px rgba(0,0,0,0.15);
+  --hover-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;}
+body{background: var(--light);color: #334155;}
+
+/* Header */
+header{
+  background: var(--primary);
+  color:white;
+  padding:25px 30px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+}
+header h1{
+  margin:0;
+  font-size:2rem;
+}
+header .header-right a{
+  display:inline-block;
+  padding:10px 18px;
+  background:white;
+  color: var(--primary);
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:500;
+  transition: all 0.3s;
+}
+header .header-right a:hover{
+  background: var(--secondary);
+  color:white;
+}
+
+/* Container */
+.container{max-width:1100px;margin:auto;padding:30px;}
+
+/* Grid & Cards */
+.grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.card{
+  background: var(--card-bg);
+  padding:20px;
+  border-radius:15px;
+  box-shadow: var(--shadow);
+  text-align:center;
+  transition: all 0.3s;
+}
+.card:hover{transform: translateY(-8px);box-shadow: var(--hover-shadow);}
+.card h3{margin-bottom:15px;color:var(--dark);}
+.card p{margin-bottom:10px;}
+.card a{
+  display:inline-block;
+  padding:10px 20px;
+  background: var(--primary);
+  color:white;
+  border-radius:10px;
+  text-decoration:none;
+  transition: all 0.3s;
+}
+.card a:hover{background: var(--secondary);}
+
+/* Footer */
+footer{text-align:center;padding:15px;background: var(--dark);color:white;margin-top:30px;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Syllabus Download</h1>
+  <div class="header-right">
+    <a href="index.html"><i class="fas fa-home"></i> Main Page</a>
+  </div>
+</header>
+
+<div class="container">
+  <section id="syllabus">
+    <h2 style="margin-bottom:20px;color:var(--dark);">Available Syllabus</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>📘 1st Year Syllabus</h3>
+        <p>Download the latest syllabus for 1st year students.</p>
+        <a href="syllabus-1st.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="card">
+        <h3>📗 2nd Year Syllabus</h3>
+        <p>Download the latest syllabus for 2nd year students.</p>
+        <a href="2nd year syllabus.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="card">
+        <h3>📙 3rd Year Syllabus</h3>
+        <p>Download the latest syllabus for 3rd year students.</p>
+        <a href="syllabus-3rd.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="card">
+        <h3>📕 4th Year Syllabus</h3>
+        <p>Download the latest syllabus for 4th year students.</p>
+        <a href="syllabus-4th.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  &copy; 2025 Agriculture Dept, NSTU. All Rights Reserved.
+</footer>
+
+</body>
+</html>

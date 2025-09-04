@@ -6,203 +6,63 @@
 <title>Agriculture Dept, NSTU</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-  :root {
-    --primary: #0ea5e9;
-    --secondary: #22c55e;
-    --dark: #0f172a;
-    --light: #f8fafc;
-    --card-bg: #ffffff;
-    --shadow: 0 10px 25px rgba(0,0,0,0.15);
-    --hover-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  }
+:root {
+  --primary: #0ea5e9;
+  --secondary: #22c55e;
+  --dark: #0f172a;
+  --light: #f8fafc;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 25px rgba(0,0,0,0.15);
+  --hover-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
 
-  *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;}
+body{background: var(--light);color: #334155;}
+.container{display:flex;min-height:100vh;}
 
-  body{
-    background: var(--light);
-    color: #334155;
-  }
+/* Sidebar */
+.sidebar{width:280px;background: var(--dark);color:white;display:flex;flex-direction:column;align-items:center;padding:20px 0;transition: width 0.3s;}
+.logo{text-align:center;margin-bottom:30px;}
+.logo img{width:100px;height:100px;border-radius:50%;border:3px solid var(--primary);transition: transform 0.3s;}
+.logo img:hover{transform: rotate(15deg);}
+.logo h1{font-size:1.3rem;margin-top:12px;}
+.sidebar-menu{list-style:none;width:100%;padding:0;}
+.sidebar-menu li{width:100%;}
+.sidebar-menu a{display:flex;align-items:center;padding:14px 25px;text-decoration:none;color: rgba(255,255,255,0.85);font-weight:500;transition: all 0.3s;border-radius:0 25px 25px 0;}
+.sidebar-menu a:hover, .sidebar-menu a.active{background: rgba(14,165,233,0.2);color:#fff;border-left: 4px solid var(--primary);}
+.sidebar-menu i{margin-right:15px;}
 
-  .container{
-    display:flex;
-    min-height:100vh;
-  }
+/* Main Content */
+.main-content{flex:1; overflow-y:auto;}
+.header{background:url('agriculture dept.jpg') center/cover no-repeat;height:350px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.header::after{content:'';position:absolute;top:0; left:0; width:100%; height:100%;background: rgba(0,0,0,0.45);z-index:0;}
+.header h1{color:white;font-size:3rem;text-shadow: 2px 2px 12px rgba(0,0,0,0.7);position:relative;z-index:1;animation: slideDown 1.2s ease-out;}
+@keyframes slideDown{0%{transform: translateY(-50px); opacity:0;}100%{transform: translateY(0); opacity:1;}}
 
-  /* Sidebar */
-  .sidebar{
-    width:280px;
-    background: var(--dark);
-    color:white;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:20px 0;
-    transition: width 0.3s;
-  }
+/* Content Section */
+.content{padding:50px 30px;max-width:1200px;margin:auto;}
+.section-title{font-size:2rem;color: var(--dark);margin-bottom:35px;display:inline-block;position:relative;}
+.section-title::after{content:'';width:60px;height:4px;background: var(--primary);display:block;margin-top:8px;border-radius:2px;}
 
-  .logo{
-    text-align:center;
-    margin-bottom:30px;
-  }
-  .logo img{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    border:3px solid var(--primary);
-    transition: transform 0.3s;
-  }
-  .logo img:hover{transform: rotate(15deg);}
-  .logo h1{
-    font-size:1.3rem;
-    margin-top:12px;
-  }
+/* Grid Cards */
+.grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(250px,1fr));gap:30px;}
+.card{background: var(--card-bg);border-radius:20px;padding:25px 20px;text-align:center;box-shadow: var(--shadow);transition: transform 0.3s, box-shadow 0.3s;}
+.card:hover{transform: translateY(-12px) scale(1.03);box-shadow: var(--hover-shadow);}
+.card img{width:120px;height:120px;border-radius:50%;object-fit:cover;margin-bottom:15px;transition: transform 0.3s;}
+.card img:hover{transform: scale(1.1);}
+.badge{display:inline-block;background: var(--primary);color:white;padding:6px 14px;border-radius:50px;font-size:13px;margin-bottom:12px;}
+.card h3{font-size:1.2rem;margin-bottom:6px;color:var(--dark);}
+.card p{font-size:14px;color:#555;}
+.card form{display:flex;flex-direction:column;gap:10px;}
+.card input, .card textarea{padding:10px;border-radius:10px;border:1px solid #ccc;width:100%;}
+.card button{padding:10px;border:none;border-radius:10px;background: var(--primary);color:white;font-weight:bold;cursor:pointer;transition: all 0.3s;}
+.card button:hover{background: var(--secondary);}
 
-  .sidebar-menu{
-    list-style:none;
-    width:100%;
-    padding:0;
-  }
+/* Footer */
+footer{text-align:center;padding:20px;background:#0f172a;color:white;margin-top:40px;}
 
-  .sidebar-menu li{width:100%;}
-  .sidebar-menu a{
-    display:flex;
-    align-items:center;
-    padding:14px 25px;
-    text-decoration:none;
-    color: rgba(255,255,255,0.85);
-    font-weight:500;
-    transition: all 0.3s;
-    border-radius:0 25px 25px 0;
-  }
-  .sidebar-menu a:hover, .sidebar-menu a.active{
-    background: rgba(14,165,233,0.2);
-    color:#fff;
-    border-left: 4px solid var(--primary);
-  }
-  .sidebar-menu i{margin-right:15px;}
-
-  /* Main Content */
-  .main-content{flex:1; overflow-y:auto;}
-
-  /* Header */
-  .header{
-    background:url('agriculture dept.jpg') center/cover no-repeat;
-    height:350px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    overflow:hidden;
-  }
-  .header::after{
-    content:'';
-    position:absolute;
-    top:0; left:0; width:100%; height:100%;
-    background: rgba(0,0,0,0.45);
-    z-index:0;
-  }
-  .header h1{
-    color:white;
-    font-size:3rem;
-    text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
-    position:relative;
-    z-index:1;
-    animation: slideDown 1.2s ease-out;
-  }
-
-  @keyframes slideDown{
-    0%{transform: translateY(-50px); opacity:0;}
-    100%{transform: translateY(0); opacity:1;}
-  }
-
-  /* Content Section */
-  .content{
-    padding:50px 30px;
-    max-width:1200px;
-    margin:auto;
-  }
-  .section-title{
-    font-size:2rem;
-    color: var(--dark);
-    margin-bottom:35px;
-    display:inline-block;
-    position:relative;
-  }
-  .section-title::after{
-    content:'';
-    width:60px;
-    height:4px;
-    background: var(--primary);
-    display:block;
-    margin-top:8px;
-    border-radius:2px;
-  }
-
-  /* Grid Cards */
-  .grid{
-    display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-  }
-
-  .card{
-    background: var(--card-bg);
-    border-radius:20px;
-    padding:25px 20px;
-    text-align:center;
-    box-shadow: var(--shadow);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .card:hover{
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: var(--hover-shadow);
-  }
-
-  .card img{
-    width:120px;
-    height:120px;
-    border-radius:50%;
-    object-fit:cover;
-    margin-bottom:15px;
-    transition: transform 0.3s;
-  }
-  .card img:hover{transform: scale(1.1);}
-
-  .badge{
-    display:inline-block;
-    background: var(--primary);
-    color:white;
-    padding:6px 14px;
-    border-radius:50px;
-    font-size:13px;
-    margin-bottom:12px;
-  }
-  .card h3{
-    font-size:1.2rem;
-    margin-bottom:6px;
-    color:var(--dark);
-  }
-  .card p{
-    font-size:14px;
-    color:#555;
-  }
-
-  /* Footer / optional */
-  footer{
-    text-align:center;
-    padding:20px;
-    background:#0f172a;
-    color:white;
-    margin-top:40px;
-  }
-
-  /* Responsive */
-  @media(max-width:768px){
-    .sidebar{width:60px;}
-    .sidebar-menu a span{display:none;}
-    .logo h1{display:none;}
-    .header h1{font-size:2rem;}
-  }
+/* Responsive */
+@media(max-width:768px){.sidebar{width:60px;}.sidebar-menu a span{display:none;}.logo h1{display:none;}.header h1{font-size:2rem;}}
 </style>
 </head>
 <body>
@@ -220,28 +80,35 @@
       <li><a href="#"><i class="fas fa-user-graduate"></i> 2nd Year</a></li>
       <li><a href="3rd year student.html"><i class="fas fa-user-graduate"></i> 3rd Year</a></li>
       <li><a href="#"><i class="fas fa-user-graduate"></i> 4th Year</a></li>
+      <li><a href="notice.html"><i class="fas fa-bullhorn"></i> Notice Board</a></li>
+      <li><a href="syllabus.html"><i class="fas fa-bullhorn"></i>syllabus</a></li>
+      <li><a href="photo and vedio gallery.html"><i class="fas fa-photo-video"></i> Photo & Video Gallery</a></li>
+      <li><a href="#"><i class="fas fa-flask"></i> Research Projects</a></li>
+      <li><a href="#"><i class="fas fa-comments"></i> Course Feedback</a></li>
+      <li><a href="#"><i class="fas fa-calendar-alt"></i> Event Calendar</a></li>
+      <li><a href="#"><i class="fas fa-user-friends"></i> Alumni Directory</a></li>
     </ul>
   </aside>
 
-<!-- Main -->
-    <main class="main-content">
-      <div class="header">
-        <h1>Department of Agriculture</h1>
-      </div>
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="header">
+      <h1>Department of Agriculture</h1>
+    </div>
 
-      <div class="content">
-        <!-- Teachers -->
-        <section id="teachers">
-          <h2 class="section-title"><i class="fas fa-users"></i> Teachers</h2>
-          <div class="grid">
-            <!-- Teacher Cards -->
-            <div class="card">
-              <span class="badge">Professor</span>
-              <img src="gazi sir.jpg" alt="Dr. Gazi Md.Mohsin">
-              <h3>Dr. Gazi Md.Mohsin</h3>
-              <p>Head of Department,Agriculture</p>
-            </div>
-            <div class="card">
+    <div class="content">
+      <!-- Teachers -->
+      <section id="teachers">
+        <h2 class="section-title"><i class="fas fa-users"></i> Teachers</h2>
+        <div class="grid">
+          <!-- Example Teacher Card -->
+          <div class="card">
+            <span class="badge">Professor</span>
+            <img src="gazi sir.jpg" alt="Dr. Gazi Md.Mohsin">
+            <h3>Dr. Gazi Md.Mohsin</h3>
+            <p>Head of Department, Agriculture</p>
+          </div>
+           <div class="card">
               <span class="badge">Professor</span>
               <img src="atik sir.jpg" alt="Dr. Md.Atiqur Rahman Bhuiyan">
               <h3>Dr. Md.Atiqur Rahman Bhuiyan</h3>
@@ -303,9 +170,99 @@
               <p>Agroforestry</p>
             </div>
           </div>
-        </section>
-      </div>
-    </main>
-</div>
+      </section>
+
+      <!-- Notice Board -->
+      <section id="notice-board">
+        <h2 class="section-title"><i class="fas fa-bullhorn"></i> Notice Board</h2>
+        <div class="card">
+          <ul>
+            <li>📢 Midterm exam will start from 15th September</li>
+            <li>📢 Seminar on Crop Biotechnology — 10th September</li>
+            <li>📢 Class suspended on 8th September (Dept Picnic)</li>
+          </ul>
+        </div>
+      </section>
+      <!-- Research Project Sharing -->
+      <section id="projects">
+        <h2 class="section-title"><i class="fas fa-flask"></i> Research Project Sharing</h2>
+        <div class="card">
+          <form id="projectForm">
+            <input type="text" placeholder="Project Title" required>
+            <textarea placeholder="Write about your project..." required></textarea>
+            <input type="file" accept="image/,video/">
+            <button type="submit">Post</button>
+          </form>
+          <div id="projectFeed"></div>
+        </div>
+      </section>
+
+      <!-- Course Feedback -->
+      <section id="feedback">
+        <h2 class="section-title"><i class="fas fa-comments"></i> Course Feedback</h2>
+        <div class="card">
+          <form id="feedbackForm">
+            <textarea placeholder="Share your feedback..." required></textarea>
+            <button type="submit">Submit</button>
+          </form>
+          <div id="feedbackFeed"></div>
+        </div>
+      </section>
+
+      <!-- Event Calendar -->
+      <section id="calendar">
+        <h2 class="section-title"><i class="fas fa-calendar-alt"></i> Event Calendar</h2>
+        <div class="card">
+          <ul>
+            <li>🎉 Orientation Program — 1st October</li>
+            <li>🎓 Convocation — 15th December</li>
+            <li>🌱 Workshop on Smart Farming — 22nd December</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Alumni Directory -->
+      <section id="alumni">
+        <h2 class="section-title"><i class="fas fa-user-friends"></i> Alumni Directory</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Md. Rahat Hossain</h3>
+            <p>Researcher, IRRI Philippines</p>
+          </div>
+          <div class="card">
+            <h3>Faria Sultana</h3>
+            <p>Lecturer, BSMRAU</p>
+          </div>
+        </div>
+      </section>
+
+<script>
+  // Research project posting
+  const projectForm = document.getElementById('projectForm');
+  const projectFeed = document.getElementById('projectFeed');
+  projectForm?.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = projectForm.querySelector('textarea').value;
+    const title = projectForm.querySelector('input[type="text"]').value;
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = '<h3>${title}</h3><p>${text}</p>';
+    projectFeed.prepend(div);
+    projectForm.reset();
+  });
+
+  // Feedback posting
+  const feedbackForm = document.getElementById('feedbackForm');
+  const feedbackFeed = document.getElementById('feedbackFeed');
+  feedbackForm?.addEventListener('submit', e => {
+    e.preventDefault();
+    const text = feedbackForm.querySelector('textarea').value;
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = <p>${text}</p>;
+    feedbackFeed.prepend(div);
+    feedbackForm.reset();
+  });
+</script>
 </body>
 </html>

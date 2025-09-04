@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডিপার্টমেন্ট নোটিশ বোর্ড</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'AdorshoLipi', Arial, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        header {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            display: flex;
+            min-height: 500px;
+        }
+        
+        .notice-board {
+            flex: 3;
+            padding: 20px;
+            border-right: 1px solid #eee;
+        }
+        
+        .login-section {
+            flex: 2;
+            padding: 20px;
+            background: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2c3e50;
+        }
+        
+        .notice {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        
+        .notice:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .notice h3 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .notice-date {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        
+        .notice-content {
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        
+        .file-attachment {
+            background: #f1f8ff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .file-icon {
+            font-size: 24px;
+            margin-right: 10px;
+            color: #2c3e50;
+        }
+        
+        .file-info {
+            flex-grow: 1;
+        }
+        
+        .file-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .file-size {
+            font-size: 0.8rem;
+            color: #7f8c8d;
+        }
+        
+        .download-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        
+        .download-btn:hover {
+            background: #219653;
+        }
+        
+        .login-form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        button {
+            background: linear-gradient(to right, #2c3e50, #4a6491);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            background: linear-gradient(to right, #1e2a36, #3a5070);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-panel {
+            margin-top: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            height: 120px;
+            resize: vertical;
+            font-size: 1rem;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .error {
+            color: #e74c3c;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .success {
+            color: #27ae60;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .logout-btn {
+            background: linear-gradient(to right, #e74c3c, #c0392b);
+            margin-top: 10px;
+        }
+        
+        .logout-btn:hover {
+            background: linear-gradient(to right, #c0392b, #a23526);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            background: #2c3e50;
+            margin-top: 20px;
+        }
+        
+        .file-preview {
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        .file-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .home-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .home-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .notice-board {
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+            
+            .home-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 12px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="home-btn">
+                <i class="fas fa-home"></i> হোম পেজ
+            </a>
+            <h1>ডিপার্টমেন্ট নোটিশ বোর্ড</h1>
+            <p class="subtitle">সকল গুরুত্বপূর্ণ নোটিশ ও ফাইল এখানে প্রকাশিত হবে</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="notice-board">
+                <h2 class="section-title">সকল নোটিশ</h2>
+                <div id="noticesContainer">
+                    <!-- নোটিশগুলো এখানে লোড হবে -->
+                </div>
+            </div>
+            
+            <div class="login-section">
+                <h2 class="section-title">এডমিন এক্সেস</h2>
+                <div class="login-form">
+                    <div class="form-group">
+                        <label for="passwordInput">পাসওয়ার্ড</label>
+                        <input type="password" id="passwordInput" placeholder="পাসওয়ার্ড দিন">
+                    </div>
+                    <button onclick="login()">লগইন</button>
+                    <p id="loginMessage" class="error"></p>
+                </div>
+                
+                <div class="admin-panel hidden" id="adminPanel">
+                    <h3>নতুন নোটিশ যোগ করুন</h3>
+                    <div class="form-group">
+                        <label for="noticeTitle">নোটিশের শিরোনাম</label>
+                        <input type="text" id="noticeTitle" placeholder="নোটিশের শিরোনাম">
+                    </div>
+                    <div class="form-group">
+                        <label for="noticeContent">নোটিশের বিস্তারিত</label>
+                        <textarea id="noticeContent" placeholder="নোটিশের বিস্তারিত লিখুন..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="noticeFile">ফাইল সংযুক্ত করুন (ছবি বা PDF)</label>
+                        <input type="file" id="noticeFile" accept="image/*,.pdf">
+                        <div class="file-preview" id="filePreview"></div>
+                    </div>
+                    <button onclick="addNotice()">নোটিশ প্রকাশ করুন</button>
+                    <button class="logout-btn" onclick="logout()">লগআউট</button>
+                    <p id="noticeMessage" class="success"></p>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© ২০২৩ ডিপার্টমেন্ট নোটিশ বোর্ড | সকল অধিকার সংরক্ষিত</p>
+        </footer>
+    </div>
+
+    <script>
+        // প্রি-ডিফাইন্ড পাসওয়ার্ড (আপনি এটি পরিবর্তন করতে পারেন)
+        const ADMIN_PASSWORD = "admin123";
+        
+        // নোটিশের উদাহরণ ডেটা
+        const sampleNotices = [
+            {
+                title: "পরীক্ষার সময়সূচী প্রকাশ",
+                content: "আগামীকাল থেকে শুরু হওয়া পরীক্ষার সময়সূচী প্রকাশ করা হয়েছে। সকল শিক্ষার্থীদের সময়সূচী দেখে নেওয়ার জন্য অনুরোধ করা হলো।",
+                date: "2023-09-20T10:30:00",
+                file: null
+            },
+            {
+                title: "ছুটির ঘোষণা",
+                content: "আগামী সোমবার প্রতিষ্ঠান বন্ধ থাকবে। তাই সকল ক্লাস ও পরীক্ষা স্থগিত করা হয়েছে।",
+                date: "2023-09-18T14:45:00",
+                file: {
+                    name: "holiday_notice.pdf",
+                    type: "application/pdf",
+                    size: "256 KB",
+                    url: "#"
+                }
+            }
+        ];
+        
+        // পৃষ্ঠা লোড হলে নোটিশগুলো দেখাবে
+        document.addEventListener('DOMContentLoaded', function() {
+            // localStorage থেকে নোটিশ লোড করা, না থাকলে স্যাম্পল নোটিশ ব্যবহার করা
+            let notices = JSON.parse(localStorage.getItem('notices'));
+            if (!notices || notices.length === 0) {
+                notices = sampleNotices;
+                localStorage.setItem('notices', JSON.stringify(notices));
+            }
+            
+            loadNotices();
+            checkLoginStatus();
+            
+            // ফাইল প্রিভিউ হ্যান্ডলার
+            document.getElementById('noticeFile').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                const preview = document.getElementById('filePreview');
+                preview.innerHTML = '';
+                
+                if (file) {
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            preview.innerHTML = '<img src="${e.target.result}" alt="ফাইল প্রিভিউ">';
+                        }
+                        reader.readAsDataURL(file);
+                    } else if (file.type === 'application/pdf') {
+                        preview.innerHTML = '<p><i class="fas fa-file-pdf" style="font-size: 48px; color: #e74c3c;"></i></p><p>PDF ফাইল: ' + file.name + '</p>';
+                    } else {
+                        preview.innerHTML = '<p>প্রিভিউ উপলব্ধ নয়</p>';
+                    }
+                }
+            });
+        });
+        
+        // নোটিশ লোড করার ফাংশন
+        function loadNotices() {
+            const noticesContainer = document.getElementById('noticesContainer');
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            
+            if (notices.length === 0) {
+                noticesContainer.innerHTML = '<div class="notice"><p>কোন নোটিশ পাওয়া যায়নি।</p></div>';
+                return;
+            }
+            
+            // নোটিশগুলো নবীন থেকে প্রাচীন ক্রমে সাজানো
+            notices.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            let noticesHTML = '';
+            notices.forEach(notice => {
+                const noticeDate = new Date(notice.date);
+                const formattedDate = noticeDate.toLocaleDateString('bn-BD', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                let fileHTML = '';
+                if (notice.file) {
+                    let fileIcon = '';
+                    if (notice.file.type.startsWith('image/')) {
+                        fileIcon = '<i class="fas fa-file-image file-icon"></i>';
+                    } else if (notice.file.type === 'application/pdf') {
+                        fileIcon = '<i class="fas fa-file-pdf file-icon"></i>';
+                    } else {
+                        fileIcon = '<i class="fas fa-file file-icon"></i>';
+                    }
+                    
+                    fileHTML = `
+                        <div class="file-attachment">
+                            ${fileIcon}
+                            <div class="file-info">
+                                <div class="file-name">${notice.file.name}</div>
+                                <div class="file-size">${notice.file.size}</div>
+                            </div>
+                            <a href="${notice.file.url}" class="download-btn" download="${notice.file.name}">
+                                <i class="fas fa-download"></i> ডাউনলোড
+                            </a>
+                        </div>
+                    `;
+                }
+                
+                noticesHTML += `
+                    <div class="notice">
+                        <h3>${notice.title}</h3>
+                        <div class="notice-date">${formattedDate}</div>
+                        <div class="notice-content">${notice.content}</div>
+                        ${fileHTML}
+                    </div>
+                `;
+            });
+            
+            noticesContainer.innerHTML = noticesHTML;
+        }
+        
+        // লগইন ফাংশন
+        function login() {
+            const password = document.getElementById('passwordInput').value;
+            const loginMessage = document.getElementById('loginMessage');
+            
+            if (password === ADMIN_PASSWORD) {
+                // সেশন স্টোরেজে লগইন স্ট্যাটাস সেভ করা
+                sessionStorage.setItem('isLoggedIn', 'true');
+                document.getElementById('adminPanel').classList.remove('hidden');
+                loginMessage.textContent = '';
+                document.getElementById('passwordInput').value = '';
+            } else {
+                loginMessage.textContent = 'ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।';
+            }
+        }
+        
+        // লগইন স্ট্যাটাস চেক করা
+        function checkLoginStatus() {
+            const isLoggedIn = sessionStorage.getItem('isLoggedIn') === 'true';
+            
+            if (isLoggedIn) {
+                document.getElementById('adminPanel').classList.remove('hidden');
+            }
+        }
+        
+        // লগআউট ফাংশন
+        function logout() {
+            sessionStorage.removeItem('isLoggedIn');
+            document.getElementById('adminPanel').classList.add('hidden');
+            document.getElementById('noticeTitle').value = '';
+            document.getElementById('noticeContent').value = '';
+            document.getElementById('noticeFile').value = '';
+            document.getElementById('filePreview').innerHTML = '';
+        }
+        
+        // নতুন নোটিশ যোগ করার ফাংশন
+        function addNotice() {
+            const title = document.getElementById('noticeTitle').value;
+            const content = document.getElementById('noticeContent').value;
+            const fileInput = document.getElementById('noticeFile');
+            const noticeMessage = document.getElementById('noticeMessage');
+            
+            if (!title || !content) {
+                noticeMessage.textContent = 'শিরোনাম এবং নোটিশের বিষয় লিখুন';
+                noticeMessage.className = 'error';
+                return;
+            }
+            
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            
+            const newNotice = {
+                title: title,
+                content: content,
+                date: new Date().toISOString(),
+                file: null
+            };
+            
+            // ফাইল আপলোড করা হলে
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const fileURL = URL.createObjectURL(file);
+                
+                newNotice.file = {
+                    name: file.name,
+                    type: file.type,
+                    size: formatFileSize(file.size),
+                    url: fileURL
+                };
+            }
+            
+            notices.push(newNotice);
+            localStorage.setItem('notices', JSON.stringify(notices));
+            
+            // ফর্ম রিসেট করা
+            document.getElementById('noticeTitle').value = '';
+            document.getElementById('noticeContent').value = '';
+            document.getElementById('noticeFile').value = '';
+            document.getElementById('filePreview').innerHTML = '';
+            
+            // সাফল্য মেসেজ দেখানো
+            noticeMessage.textContent = 'নোটিশ সফলভাবে প্রকাশিত হয়েছে!';
+            noticeMessage.className = 'success';
+            
+            // নোটিশ রিফ্রেশ করা
+            loadNotices();
+            
+            // ৩ সেকেন্ড পর মেসেজটি автоматически隐藏
+            setTimeout(() => {
+                noticeMessage.textContent = '';
+            }, 3000);
+        }
+        
+        // ফাইল সাইজ ফরম্যাট করার ফাংশন
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    </script>
+</body>
+</html>
