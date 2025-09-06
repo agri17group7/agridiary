@@ -17,7 +17,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;font-family:'Segoe UI', Tahoma, Geneva, Verdana,sans-serif;}
-body{background: var(--light);color: #334155;}
+body{background: var(--light);color: #334155;line-height:1.6;}
 
 /* Header */
 header{
@@ -29,10 +29,13 @@ header{
   justify-content: space-between;
   flex-wrap: wrap;
   position: relative;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 header h1{
   margin:0;
   font-size:2rem;
+  font-weight:700;
 }
 header .header-right a{
   display:inline-block;
@@ -50,7 +53,17 @@ header .header-right a:hover{
 }
 
 /* Container */
-.container{max-width:1100px;margin:auto;padding:30px;}
+.container{max-width:1200px;margin:auto;padding:30px;}
+
+/* Section */
+section{margin-bottom:50px;}
+section h2{
+  margin-bottom:25px;
+  color:var(--dark);
+  font-size:1.8rem;
+  border-left:6px solid var(--primary);
+  padding-left:10px;
+}
 
 /* Grid & Cards */
 .grid{display:grid;grid-template-columns: repeat(auto-fit,minmax(250px,1fr));gap:30px;}
@@ -77,7 +90,7 @@ header .header-right a:hover{
 .card a:hover{background: var(--secondary);}
 
 /* Footer */
-footer{text-align:center;padding:15px;background: var(--dark);color:white;margin-top:30px;}
+footer{text-align:center;padding:15px;background: var(--dark);color:white;margin-top:30px;border-top-left-radius: 15px;border-top-right-radius: 15px;}
 </style>
 </head>
 <body>
@@ -90,31 +103,75 @@ footer{text-align:center;padding:15px;background: var(--dark);color:white;margin
 </header>
 
 <div class="container">
-  <section id="syllabus">
-    <h2 style="margin-bottom:20px;color:var(--dark);">Available Syllabus</h2>
+
+  <!-- Year 1 -->
+  <section id="year1">
+    <h2>Year 1</h2>
     <div class="grid">
       <div class="card">
-        <h3>📘 1st Year Syllabus</h3>
-        <p>Download the latest syllabus for 1st year students.</p>
-        <a href="syllabus-1st.pdf" download><i class="fas fa-download"></i> Download</a>
+        <h3>📘 Term 1</h3>
+        <p>Download syllabus for Year 1 Term 1 students.</p>
+        <a href="syllabus-1-1.pdf" download><i class="fas fa-download"></i> Download</a>
       </div>
       <div class="card">
-        <h3>📗 2nd Year Syllabus</h3>
-        <p>Download the latest syllabus for 2nd year students.</p>
-        <a href="2nd year syllabus.pdf" download><i class="fas fa-download"></i> Download</a>
-      </div>
-      <div class="card">
-        <h3>📙 3rd Year Syllabus</h3>
-        <p>Download the latest syllabus for 3rd year students.</p>
-        <a href="syllabus-3rd.pdf" download><i class="fas fa-download"></i> Download</a>
-      </div>
-      <div class="card">
-        <h3>📕 4th Year Syllabus</h3>
-        <p>Download the latest syllabus for 4th year students.</p>
-        <a href="syllabus-4th.pdf" download><i class="fas fa-download"></i> Download</a>
+        <h3>📘 Term 2</h3>
+        <p>Download syllabus for Year 1 Term 2 students.</p>
+        <a href="year 1 term 2 syllabus.pdf" download><i class="fas fa-download"></i> Download</a>
       </div>
     </div>
   </section>
+
+  <!-- Year 2 -->
+  <section id="year2">
+    <h2>Year 2</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>📗 Term 1</h3>
+        <p>Download syllabus for Year 2 Term 1 students.</p>
+        <a href="syllabus-2-1.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="card">
+        <h3>📗 Term 2</h3>
+        <p>Download syllabus for Year 2 Term 2 students.</p>
+        <a href="2nd year syllabus.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Year 3 -->
+  <section id="year3">
+    <h2>Year 3</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>📙 Term 1</h3>
+        <p>Download syllabus for Year 3 Term 1 students.</p>
+        <a href="syllabus-3-1.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="card">
+        <h3>📙 Term 2</h3>
+        <p>Download syllabus for Year 3 Term 2 students.</p>
+        <a href="syllabus-3-2.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Year 4 -->
+  <section id="year4">
+    <h2>Year 4</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>📕 Term 1</h3>
+        <p>Download syllabus for Year 4 Term 1 students.</p>
+        <a href="syllabus-4-1.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+      <div class="card">
+        <h3>📕 Term 2</h3>
+        <p>Download syllabus for Year 4 Term 2 students.</p>
+        <a href="syllabus-4-2.pdf" download><i class="fas fa-download"></i> Download</a>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <footer>

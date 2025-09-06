@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Collaboration & Course Feedback Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            color: white;
+        }
+        
+        .logo i {
+            margin-right: 12px;
+            color: #fde047;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.8rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+        }
+        
+        .nav-links a:hover {
+            color: #fde047;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(rgba(30, 64, 175, 0.85), rgba(30, 64, 175, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%231e40af"/><path d="M0 50 L100 50 M50 0 L50 100" stroke="%233b82f6" stroke-width="0.5"/></svg>');
+            background-size: 30px;
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            color: #e0f2fe;
+            font-weight: 400;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #f59e0b;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(245, 158, 11, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: #fbbf24;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(245, 158, 11, 0.4);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            color: #1e40af;
+            font-size: 2.5rem;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .feature-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1.2rem;
+            color: #1e40af;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* Tabs Section */
+        .tabs {
+            background-color: #f1f5f9;
+            padding: 3rem 0 6rem;
+        }
+        
+        .tab-header {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            background: white;
+            padding: 0.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+            color: #64748b;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #6366f1);
+            color: white;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .project-card, .course-card {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .project-card:hover, .course-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+        }
+        
+        .project-header, .course-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .project-title, .course-title {
+            color: #1e40af;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .project-meta, .course-meta {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-right: 0.6rem;
+            color: #1e40af;
+            font-weight: 500;
+            margin-top: 0.8rem;
+        }
+        
+        .rating {
+            color: #f59e0b;
+            margin: 0.8rem 0;
+            font-size: 1.2rem;
+        }
+        
+        form {
+            background: linear-gradient(145deg, #f8fafc, #ffffff);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            margin-top: 2.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 600;
+            color: #1e40af;
+            font-size: 1.05rem;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+        
+        textarea {
+            min-height: 160px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 3.5rem 0 2rem;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        .footer-section {
+            text-align: left;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            color: #fde047;
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: #3b82f6;
+            border-radius: 2px;
+        }
+        
+        .social-icons a {
+            color: white;
+            font-size: 1.4rem;
+            margin-right: 1.2rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-icons a:hover {
+            color: #fde047;
+            transform: translateY(-3px);
+        }
+        
+        .projects-container, .feedbacks-container {
+            margin-bottom: 2.5rem;
+        }
+        
+        .empty-message {
+            text-align: center;
+            padding: 3rem;
+            color: #94a3b8;
+            font-style: italic;
+            background: #f8fafc;
+            border-radius: 12px;
+            border: 2px dashed #cbd5e1;
+        }
+        
+        .success-message {
+            background: linear-gradient(135deg, #86efac, #4ade80);
+            color: #166534;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.5s ease;
+            box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tab-header {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+            
+            .tab-btn {
+                margin-bottom: 0.5rem;
+                border-radius: 12px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .footer-section {
+                text-align: center;
+            }
+            
+            .footer-section h3:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        /* Mobile menu button */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                z-index: 99;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .nav-links li {
+                margin: 0.8rem 0;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    EduPlatform
+                </div>
+                <button class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Platform for Sharing Research and Teaching Experiences</h1>
+            <p>Here you can share your research projects and provide feedback on various courses.</p>
+            <a href="#" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Our Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Research Idea Sharing</h3>
+                    <p>Share your research ideas and projects and get valuable feedback from others.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Course Feedback</h3>
+                    <p>Share your opinions about courses and teachers and help others make informed decisions.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>Find other researchers and students who share your interests and collaborate on projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tabs">
+        <div class="container">
+            <div class="tab-header">
+                <button class="tab-btn active" onclick="openTab('research')">Research Projects</button>
+                <button class="tab-btn" onclick="openTab('feedback')">Course Feedback</button>
+            </div>
+
+            <div id="research" class="tab-content active">
+                <h2>Research Projects</h2>
+                <p>Below are some recent research projects shared by our community:</p>
+                
+                <div class="success-message" id="project-success">
+                    Your project has been submitted successfully!
+                </div>
+                
+                <div class="projects-container" id="projects-container">
+                    <div class="empty-message" id="projects-empty">
+                        No projects submitted yet. Be the first to submit a project!
+                    </div>
+                </div>
+                
+                <h3>Submit New Project</h3>
+                <form id="project-form">
+                    <div class="form-group">
+                        <label for="project-title">Project Title</label>
+                        <input type="text" id="project-title" name="project-title" placeholder="Enter your project title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-author">Your Name</label>
+                        <input type="text" id="project-author" name="project-author" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-desc">Project Description</label>
+                        <textarea id="project-desc" name="project-desc" placeholder="Enter detailed description of your project" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="project-tags">Tags (comma separated)</label>
+                        <input type="text" id="project-tags" name="project-tags" placeholder="Example: AI, Machine Learning, Data Science" required>
+                    </div>
+                    <button type="submit" class="btn">Submit Project</button>
+                </form>
+            </div>
+
+            <div id="feedback" class="tab-content">
+                <h2>Course Feedback</h2>
+                <p>Below is feedback from students about various courses:</p>
+                
+                <div class="success-message" id="feedback-success">
+                    Your feedback has been submitted successfully!
+                </div>
+                
+                <div class="feedbacks-container" id="feedbacks-container">
+                    <div class="empty-message" id="feedbacks-empty">
+                        No feedback submitted yet. Be the first to submit feedback!
+                    </div>
+                </div>
+                
+                <h3>Submit New Feedback</h3>
+                <form id="feedback-form">
+                    <div class="form-group">
+                        <label for="course-name">Course Name</label>
+                        <input type="text" id="course-name" name="course-name" placeholder="Enter course name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher-name">Teacher Name</label>
+                        <input type="text" id="teacher-name" name="teacher-name" placeholder="Enter teacher name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="student-name">Your Name</label>
+                        <input type="text" id="student-name" name="student-name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="year">Year</label>
+                        <select id="year" name="year" required>
+                            <option value="">--Select Year--</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rating">Rating</label>
+                        <select id="rating" name="rating" required>
+                            <option value="5">5 Stars</option>
+                            <option value="4">4 Stars</option>
+                            <option value="3">3 Stars</option>
+                            <option value="2">2 Stars</option>
+                            <option value="1">1 Star</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedback-text">Your Feedback</label>
+                        <textarea id="feedback-text" name="feedback-text" placeholder="Share your experience about this course" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Feedback</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>This is an educational platform where students can share their research projects and provide feedback on courses.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: sijibin2600@gmail.com</p>
+                    <p>Phone: +8801885162600</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p>&copy; 2025 EduPlatform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab function
+        function openTab(tabName) {
+            // Hide all tab content
+            var tabContent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabContent.length; i++) {
+                tabContent[i].classList.remove("active");
+            }
+            
+            // Remove active class from all buttons
+            var tabButtons = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove("active");
+            }
+            
+            // Show the specific tab content and add active class to the button
+            document.getElementById(tabName).classList.add("active");
+            event.currentTarget.classList.add("active");
+        }
+        
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Load data from localStorage
+        function loadFromLocalStorage() {
+            // Load projects
+            const projects = JSON.parse(localStorage.getItem('projects')) || [];
+            const projectsContainer = document.getElementById('projects-container');
+            const projectsEmpty = document.getElementById('projects-empty');
+            
+            if (projects.length > 0) {
+                projectsEmpty.style.display = 'none';
+                projectsContainer.innerHTML = '';
+                
+                projects.forEach(project => {
+                    const projectCard = createProjectCard(project);
+                    projectsContainer.appendChild(projectCard);
+                });
+            } else {
+                projectsEmpty.style.display = 'block';
+            }
+            
+            // Load feedbacks
+            const feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+            const feedbacksContainer = document.getElementById('feedbacks-container');
+            const feedbacksEmpty = document.getElementById('feedbacks-empty');
+            
+            if (feedbacks.length > 0) {
+                feedbacksEmpty.style.display = 'none';
+                feedbacksContainer.innerHTML = '';
+                
+                feedbacks.forEach(feedback => {
+                    const feedbackCard = createFeedbackCard(feedback);
+                    feedbacksContainer.appendChild(feedbackCard);
+                });
+            } else {
+                feedbacksEmpty.style.display = 'block';
+            }
+        }
+        
+        // Create project card
+        function createProjectCard(project) {
+            const projectCard = document.createElement('div');
+            projectCard.className = 'project-card';
+            projectCard.innerHTML = `
+                <div class="project-header">
+                    <h3 class="project-title">${project.title}</h3>
+                    <div class="project-meta">by ${project.author}</div>
+                </div>
+                <p>${project.desc}</p>
+                <div class="tags">
+                    ${project.tags.split(',').map(tag => `<span class="tag">${tag.trim()}</span>`).join('')}
+                </div>
+            `;
+            return projectCard;
+        }
+        
+        // Create feedback card
+        function createFeedbackCard(feedback) {
+            // Create rating stars
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= feedback.rating) {
+                    starsHtml += '<i class="fas fa-star"></i>';
+                } else if (i - 0.5 == feedback.rating) {
+                    starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    starsHtml += '<i class="far fa-star"></i>';
+                }
+            }
+            
+            const yearText = getYearText(feedback.year);
+            
+            const feedbackCard = document.createElement('div');
+            feedbackCard.className = 'course-card';
+            feedbackCard.innerHTML = `
+                <div class="course-header">
+                    <h3 class="course-title">${feedback.courseName}</h3>
+                    <div class="course-meta">${feedback.teacherName}</div>
+                </div>
+                <div class="rating">
+                    ${starsHtml}
+                </div>
+                <p>${feedback.feedbackText}</p>
+                <div class="review-meta">- by ${feedback.studentName}, ${yearText}</div>
+            `;
+            return feedbackCard;
+        }
+        
+        // Get year text
+        function getYearText(yearValue) {
+            switch(yearValue) {
+                case '1': return '1st Year';
+                case '2': return '2nd Year';
+                case '3': return '3rd Year';
+                case '4': return '4th Year';
+                default: return yearValue;
+            }
+        }
+        
+        // Project form submission
+        document.getElementById('project-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const projectData = {
+                title: document.getElementById('project-title').value,
+                author: document.getElementById('project-author').value,
+                desc: document.getElementById('project-desc').value,
+                tags: document.getElementById('project-tags').value
+            };
+            
+            // Get existing projects
+            let projects = JSON.parse(localStorage.getItem('projects')) || [];
+            
+            // Add new project
+            projects.push(projectData);
+            
+            // Save to localStorage
+            localStorage.setItem('projects', JSON.stringify(projects));
+            
+            // Add new project to container
+            const projectCard = createProjectCard(projectData);
+            document.getElementById('projects-empty').style.display = 'none';
+            document.getElementById('projects-container').prepend(projectCard);
+            
+            // Show success message
+            document.getElementById('project-success').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                document.getElementById('project-success').style.display = 'none';
+            }, 3000);
+        });
+        
+        // Feedback form submission
+        document.getElementById('feedback-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const feedbackData = {
+                courseName: document.getElementById('course-name').value,
+                teacherName: document.getElementById('teacher-name').value,
+                studentName: document.getElementById('student-name').value,
+                year: document.getElementById('year').value,
+                rating: parseInt(document.getElementById('rating').value),
+                feedbackText: document.getElementById('feedback-text').value
+            };
+            
+            // Get existing feedbacks
+            let feedbacks = JSON.parse(localStorage.getItem('feedbacks')) || [];
+            
+            // Add new feedback
+            feedbacks.push(feedbackData);
+            
+            // Save to localStorage
+            localStorage.setItem('feedbacks', JSON.stringify(feedbacks));
+            
+            // Add new feedback to container
+            const feedbackCard = createFeedbackCard(feedbackData);
+            document.getElementById('feedbacks-empty').style.display = 'none';
+            document.getElementById('feedbacks-container').prepend(feedbackCard);
+            
+            // Show success message
+            document.getElementById('feedback-success').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Hide success message after 3 seconds
+            setTimeout(() => {
+                document.getElementById('feedback-success').style.display = 'none';
+            }, 3000);
+        });
+        
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            loadFromLocalStorage();
+        });
+    </script>
+</body>
+</html>
