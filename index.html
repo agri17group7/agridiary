@@ -35,6 +35,36 @@ body {
 .container {
   display: flex;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Mobile menu toggle button */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+  z-index: 1000;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-size: 18px;
+}
+
+/* Overlay for mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
 }
 
 /* Sidebar */
@@ -46,11 +76,12 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 20px 0;
-  transition: width 0.3s;
+  transition: transform 0.3s ease;
   position: fixed;
   height: 100vh;
   z-index: 100;
   box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+  overflow-y: auto;
 }
 
 .logo {
@@ -105,7 +136,7 @@ body {
 .sidebar-menu a {
   display: flex;
   align-items: center;
-  padding: 5px 25px;
+  padding: 15px 25px;
   text-decoration: none;
   color: rgba(255,255,255,0.85);
   font-weight: 500;
@@ -148,6 +179,7 @@ body {
   flex: 1;
   overflow-y: auto;
   margin-left: 280px;
+  transition: margin-left 0.3s ease;
 }
 
 .header {
@@ -300,65 +332,6 @@ body {
   line-height: 1.5;
 }
 
-.card form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.card input, .card textarea, .card select {
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
-  width: 100%;
-  font-size: 14px;
-  transition: border-color 0.3s;
-}
-
-.card input:focus, .card textarea:focus, .card select:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(42,157,143,0.2);
-}
-
-.card button {
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: var(--gradient);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  letter-spacing: 0.5px;
-}
-
-.card button:hover {
-  background: var(--accent);
-  transform: translateY(-2px);
-}
-
-/* Notice Board */
-.notice-list {
-  list-style: none;
-}
-
-.notice-list li {
-  padding: 15px;
-  margin-bottom: 10px;
-  background: #f8f9fa;
-  border-left: 4px solid var(--primary);
-  border-radius: 4px;
-  transition: transform 0.3s;
-}
-
-.notice-list li:hover {
-  transform: translateX(5px);
-  background: white;
-  box-shadow: var(--shadow);
-}
-
 /* Footer */
 footer {
   text-align: center;
@@ -438,22 +411,27 @@ footer {
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
+  }
+  
   .sidebar {
-    width: 80px;
+    transform: translateX(-100%);
+    width: 280px;
   }
   
-  .sidebar-menu a span {
-    display: none;
-  }
-  
-  .logo h1 {
-    display: none;
+  .sidebar.active {
+    transform: translateX(0);
   }
   
   .main-content {
-    margin-left: 80px;
+    margin-left: 0;
+  }
+  
+  .overlay.active {
+    display: block;
   }
   
   .header h1 {
@@ -462,14 +440,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .sidebar {
-    width: 60px;
-  }
-  
-  .main-content {
-    margin-left: 60px;
-  }
-  
   .header {
     height: 350px;
   }
@@ -488,6 +458,25 @@ footer {
   
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+  
+  .card {
+    padding: 20px 15px;
+  }
+  
+  .card img {
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -515,7 +504,15 @@ footer {
 </head>
 <body>
 <div class="container">
-  <!-- Sidebar -->
+  <!-- Mobile menu toggle button -->
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  <!-- Overlay for mobile -->
+  <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
   <aside class="sidebar">
     <div class="logo">
       <img src="agriculture dept.jpg" alt="NSTU Logo">
@@ -550,7 +547,7 @@ footer {
     <div class="content">
       <!-- Teachers -->
       <section id="teachers">
-        <h2 class="section-title"><i class="fas fa-users"></i> Distinguished Faculty</h2>
+        <h2 class="section-title"><i class="fas fa-users"></i>Our Teachers</h2>
         <div class="grid">
           <!-- Example Teacher Card -->
           <div class="card animate">
@@ -569,32 +566,31 @@ footer {
           
           <div class="card animate delay-2">
             <span class="badge">Associate Professor</span>
-            <img src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="Dr. Pijush kanti Jhan">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Pijush" alt="Dr. Pijush kanti Jhan">
             <h3>Dr. Pijush kanti Jhan</h3>
             <p>Entomology & Insect Molecular Physiology</p>
           </div>
           
           <div class="card animate delay-3">
             <span class="badge">Associate Professor</span>
-            <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Dr. Mehede Hasan Rubel">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Rubel" alt="Dr. Mehede Hasan Rubel">
             <h3>Dr. Mehede Hasan Rubel</h3>
             <p>Genetics, Plant Breeding & Biotechnology</p>
           </div>
           
           <div class="card animate delay-4">
             <span class="badge">Associate Professor</span>
-            <img src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="DR. Kawsar Hossen">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Kawsar" alt="DR. Kawsar Hossen">
             <h3>DR. Kawsar Hossen</h3>
             <p>Agricultural Horticulture</p>
           </div>
           
           <div class="card animate">
             <span class="badge">Assistant Professor</span>
-            <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Dr. Mohammaed Nuruzzaman">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Nuruzzaman" alt="Dr. Mohammaed Nuruzzaman">
             <h3>Dr. Mohammaed Nuruzzaman</h3>
             <p>Soil Science & Agricultural Chemistry</p>
           </div>
-          
           <div class="card animate delay-1">
             <span class="badge">Assistant Professor</span>
             <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Md. Shariful islam">
@@ -632,34 +628,27 @@ footer {
         </div>
       </section>
             
-
       <!-- Alumni Directory -->
       <section id="alumni">
         <h2 class="section-title"><i class="fas fa-user-friends"></i> Alumni Directory</h2>
         <div class="grid">
           <div class="card animate">
-            <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Md. Rahat Hossain">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Rahat" alt="Md. Rahat Hossain">
             <h3>Md. Rahat Hossain</h3>
             <p>Researcher, IRRI Philippines</p>
             <p>Batch: 2015</p>
           </div>
           <div class="card animate delay-1">
-            <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Faria Sultana">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Faria" alt="Faria Sultana">
             <h3>Faria Sultana</h3>
             <p>Lecturer, BSMRAU</p>
             <p>Batch: 2016</p>
           </div>
           <div class="card animate delay-2">
-            <img src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="Abdul Karim">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Abdul" alt="Abdul Karim">
             <h3>Abdul Karim</h3>
             <p>Agricultural Officer, DAE</p>
             <p>Batch: 2014</p>
-          </div>
-          <div class="card animate delay-3">
-            <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Nusrat Jahan">
-            <h3>Nusrat Jahan</h3>
-            <p>PhD Researcher, USA</p>
-            <p>Batch: 2013</p>
           </div>
         </div>
       </section>
@@ -673,14 +662,14 @@ footer {
         <p>Sonapur, Noakhali - 3814, Bangladesh</p>
         
         <div class="social-icons">
-          <a href="saiful111161"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-linkedin-in"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         
-        <p class="copyright">© 2023 Department of Agriculture, NSTU. All Rights Reserved.</p>
+        <p class="copyright">© 2025 Department of Agriculture, NSTU. All Rights Reserved.</p>
       </div>
     </footer>
   </main>
@@ -691,44 +680,29 @@ footer {
 </div>
 
 <script>
-  // Research project posting
-  const projectForm = document.getElementById('projectForm');
-  const projectFeed = document.getElementById('projectFeed');
-  projectForm?.addEventListener('submit', e => {
-    e.preventDefault();
-    const text = projectForm.querySelector('textarea').value;
-    const title = projectForm.querySelector('input[type="text"]').value;
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.innerHTML = `<h3>${title}</h3><p>${text}</p>`;
-    projectFeed.prepend(div);
-    projectForm.reset();
+  // Mobile menu toggle functionality
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
   });
-
-  // Feedback posting
-  const feedbackForm = document.getElementById('feedbackForm');
-  const feedbackFeed = document.getElementById('feedbackFeed');
-  feedbackForm?.addEventListener('submit', e => {
-    e.preventDefault();
-    const text = feedbackForm.querySelector('textarea').value;
-    const div = document.createElement('div');
-    div.className = 'card';
-    div.innerHTML = `<p>${text}</p>`;
-    feedbackFeed.prepend(div);
-    feedbackForm.reset();
+  
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
   });
-
-  // Star rating functionality
-  const stars = document.querySelectorAll('.fa-star');
-  stars.forEach((star, index) => {
-    star.addEventListener('click', () => {
-      stars.forEach((s, i) => {
-        if (i <= index) {
-          s.style.color = '#e9c46a';
-        } else {
-          s.style.color = '#ddd';
-        }
-      });
+  
+  // Close sidebar when a menu item is clicked (on mobile)
+  const menuItems = document.querySelectorAll('.sidebar-menu a');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 992) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      }
     });
   });
 
