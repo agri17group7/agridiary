@@ -1,669 +1,467 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>এগ্রি ১৭তম আবর্তন</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Department of Agriculture - NSTU</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #f6f9fb;
-  --card: #ffffff;
-  --text: #1f2937;
-  --muted: #64748b;
-  --primary: #0ea5e9;
-  --primary-2: #22c55e;
-  --ring: rgba(14,165,233,.35);
-  --paper: #fffef7;
-  --ink: #0f172a;
-  --shadow: 0 10px 25px rgba(0,0,0,.06);
-  --shadow-hover: 0 18px 40px rgba(0,0,0,.1);
+  --primary: #2a9d8f;
+  --secondary: #e9c46a;
+  --accent: #e76f51;
+  --dark: #264653;
+  --light: #f8f9fa;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 25px rgba(0,0,0,0.08);
+  --hover-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  font-family: "Noto Sans Bengali", sans-serif;
-  background: linear-gradient(120deg, #eef6ff, #f6fff3 55%, #fffaf0);
-  color: var(--text);
-  line-height: 1.6;
-  padding-bottom: 40px;
+  background: var(--light);
+  color: #334155;
+  overflow-x: hidden;
 }
 
-/* Header */
-.header {
-  background: linear-gradient(120deg, #0ea5e9, #22c55e);
-  color: white;
-  text-align: center;
-  padding: 25px 20px;
-  margin-bottom: 30px;
-  border-radius: 0 0 20px 20px;
-  box-shadow: var(--shadow);
-}
-
-.header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-}
-
-.header p {
-  font-size: 1.1rem;
-  opacity: 0.9;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-/* Layout */
 .container {
   display: flex;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 15px;
-  gap: 20px;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Mobile menu toggle button */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+  z-index: 1000;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-size: 18px;
+}
+
+/* Overlay for mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
 }
 
 /* Sidebar */
 .sidebar {
-  width: 250px;
-  background: #2c3e50;
-  color: #fff;
-  border-radius: 15px;
-  padding: 20px 15px;
-  height: fit-content;
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 20px;
+  width: 280px;
+  background: var(--dark);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  transition: transform 0.3s ease;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+  overflow-y: auto;
 }
 
-.sidebar h3 {
+.logo {
   text-align: center;
-  margin-bottom: 20px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid rgba(255,255,255,0.2);
+  margin-bottom: 30px;
+  position: relative;
 }
 
-.sidebar a {
+.logo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  transition: transform 0.5s;
+  object-fit: cover;
+}
+
+.logo img:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.logo h1 {
+  font-size: 1.3rem;
+  margin-top: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar-menu li {
+  width: 100%;
+}
+
+.sidebar-menu a {
   display: flex;
   align-items: center;
-  color: #fff;
-  padding: 12px 15px;
-  margin-bottom: 8px;
-  border-radius: 8px;
+  padding: 15px 25px;
   text-decoration: none;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
   transition: all 0.3s;
-  gap: 10px;
+  border-radius: 0 25px 25px 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.sidebar a:hover {
-  background: #1abc9c;
-  transform: translateX(5px);
+.sidebar-menu a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.sidebar-menu a:hover::before {
+  left: 100%;
+}
+
+.sidebar-menu a:hover, .sidebar-menu a.active {
+  background: rgba(42,157,143,0.15);
+  color: #fff;
+  border-left: 4px solid var(--primary);
+}
+
+.sidebar-menu i {
+  margin-right: 15px;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
 }
 
 /* Main Content */
 .main-content {
   flex: 1;
+  overflow-y: auto;
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+}
+
+.header {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('agriculture dept.jpg') center/cover no-repeat;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.header h1 {
+  color: white;
+  font-size: 3.5rem;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+  font-family: 'Roboto Slab', serif;
+  animation: slideDown 1.2s ease-out;
+}
+
+.header p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Content Section */
+.content {
+  padding: 50px 30px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .section-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 30px 0 20px;
-  color: #2e7d32;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
+  color: var(--dark);
+  margin-bottom: 35px;
+  display: inline-block;
+  position: relative;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 600;
 }
 
 .section-title i {
-  font-size: 1.3rem;
+  margin-right: 12px;
+  color: var(--primary);
 }
 
-/* Grid */
+.section-title::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: var(--gradient);
+  display: block;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Grid Cards */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 20px;
-  margin-bottom: 30px;
+  gap: 30px;
 }
 
 .card {
-  background: var(--card);
-  border-radius: 18px;
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px 20px;
+  text-align: center;
   box-shadow: var(--shadow);
-  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid rgba(2,6,23,.06);
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--gradient);
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
+  transform: translateY(-12px);
+  box-shadow: var(--hover-shadow);
 }
 
-.cover {
-  height: 100px;
-  background: linear-gradient(120deg, rgba(14,165,233,.18), rgba(34,197,94,.18));
-}
-
-.avatar-wrap {
-  display: flex;
-  justify-content: center;
-  margin-top: -50px;
-}
-
-.avatar {
-  width: 100px;
-  height: 100px;
+.card img {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: 4px solid var(--card);
   object-fit: cover;
-  box-shadow: 0 6px 16px rgba(0,0,0,.12);
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+  border: 3px solid var(--primary);
+  padding: 3px;
 }
 
-.content {
-  padding: 20px;
-  text-align: center;
-}
-
-.name {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin: 10px 0 5px;
-}
-
-.meta {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 15px;
-  text-align: left;
-  background: #f8fafc;
-  border: 1px solid #eef2f7;
-  border-radius: 14px;
-  padding: 15px;
-}
-
-.row {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
-  font-size: 14px;
-}
-
-.label {
-  min-width: 80px;
-  color: #0f172a;
-  font-weight: 700;
-}
-
-.value {
-  color: #334155;
+.card img:hover {
+  transform: scale(1.1);
 }
 
 .badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: #0ea5e9;
-  color: #fff;
+  display: inline-block;
+  background: var(--gradient);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
   font-size: 12px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 999px;
-  box-shadow: 0 6px 14px var(--ring);
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
 }
 
-/* Calendar */
-.calendar-section {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: var(--shadow);
-  margin-bottom: 30px;
-}
-
-.calendar-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.calendar-table th, .calendar-table td {
-  border: 1px solid #e2e8f0;
-  padding: 12px 15px;
-  text-align: center;
-}
-
-.calendar-table th {
-  background: #c8f7c5;
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+  color: var(--dark);
   font-weight: 600;
 }
 
-.calendar-table tr:nth-child(even) {
-  background-color: #f8fafc;
-}
-
-.calendar-table tr:hover {
-  background-color: #f1f9ff;
-}
-
-/* Contact Form */
-.contact-section {
-  background: white;
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: var(--shadow);
-  margin-bottom: 30px;
-}
-
-.contact-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: #334155;
-}
-
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
-  font-family: 'Noto Sans Bengali', sans-serif;
-  transition: all 0.3s;
-}
-
-.form-group input:focus, .form-group textarea:focus {
-  outline: none;
-  border-color: #0ea5e9;
-  box-shadow: 0 0 0 3px rgba(14,165,233,.2);
-}
-
-.form-group textarea {
-  grid-column: 1 / span 2;
-  min-height: 120px;
-  resize: vertical;
-}
-
-.submit-btn {
-  grid-column: 1 / span 2;
-  background: #2e7d32;
-  color: #fff;
-  padding: 14px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-top: 10px;
-}
-
-.submit-btn:hover {
-  background: #1b5e20;
-  transform: translateY(-2px);
-}
-
-.confirmation-msg {
-  margin-top: 15px;
-  padding: 12px 15px;
-  background: #d1fae5;
-  color: #065f46;
-  border-radius: 8px;
-  text-align: center;
-  display: none;
-}
-
-/* Flip Book Section */
-.qa-book-section {
-  margin: 40px 0;
-  background: white;
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: var(--shadow);
-}
-
-.qa-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  justify-content: center;
-  margin-bottom: 25px;
-}
-
-.qa-ribbon {
-  background: linear-gradient(180deg, #10b981, #0ea5e9);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-weight: 700;
-  box-shadow: 0 8px 18px rgba(14,165,233,.25);
-  font-size: 1.1rem;
-}
-
-.book-wrap {
-  perspective: 2200px;
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.book {
-  --w: 900px;
-  --h: 520px;
-  width: 100%;
-  max-width: var(--w);
-  height: var(--h);
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 1s ease;
-  cursor: pointer;
-}
-
-.book .shadow {
-  position: absolute;
-  inset: 0;
-  filter: blur(18px);
-  background: radial-gradient(ellipse at 50% 110%, rgba(0,0,0,.18), transparent 55%);
-  transform: translateZ(-2px);
-}
-
-/* Covers */
-.cover-left, .cover-right {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  background: #1f2937;
-  border-radius: 14px;
-  box-shadow: 0 20px 40px rgba(0,0,0,.25);
-  transform-origin: left center;
-  color: #e5e7eb;
-  overflow: hidden;
-  transition: transform 1s ease;
-}
-
-.cover-right {
-  left: 50%;
-  transform-origin: right center;
-}
-
-.cover-text {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 24px;
-}
-
-.cover-title {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: .5px;
-  margin-bottom: 10px;
-}
-
-.cover-sub {
-  opacity: .8;
-  font-size: 16px;
-}
-
-.leather {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 10% 10%, rgba(255,255,255,.08), transparent 40%),
-    radial-gradient(ellipse at 90% 90%, rgba(255,255,255,.06), transparent 40%),
-    repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 2px, rgba(0,0,0,.03) 2px 4px);
-  mix-blend-mode: overlay;
-  pointer-events: none;
-}
-
-.spine {
-  position: absolute;
-  left: calc(50% - 6px);
-  top: 16px;
-  bottom: 16px;
-  width: 12px;
-  background: #111827;
-  border-radius: 8px;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06);
-}
-
-/* Pages */
-.page {
-  position: absolute;
-  top: 8px;
-  bottom: 8px;
-  width: calc(50% - 10px);
-  background: var(--paper);
-  color: var(--ink);
-  border-radius: 10px;
-  box-shadow: 0 12px 28px rgba(0,0,0,.15), inset 0 0 0 1px rgba(2,6,23,.06);
-  padding: 25px 30px;
-  transform-style: preserve-3d;
-  overflow: hidden;
-  transition: transform 1s ease;
-}
-
-.page::after {
-  content: "";
-  position: absolute;
-  right: -2px;
-  top: 0;
-  bottom: 0;
-  width: 18px;
-  background: linear-gradient(90deg, transparent, rgba(0,0,0,.06), transparent);
-}
-
-.page-left {
-  left: 8px;
-  transform-origin: right center;
-}
-
-.page-right {
-  right: 8px;
-  transform-origin: left center;
-}
-
-.page-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(#00000012 1px, transparent 1px);
-  background-size: 12px 12px;
-  opacity: .25;
-  pointer-events: none;
-}
-
-.page h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: #0f172a;
-}
-
-.page h4 {
-  font-size: 17px;
-  margin: 15px 0 8px;
-  color: #0f172a;
-}
-
-.kicker {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: .08em;
-  opacity: .7;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  color: #0ea5e9;
-}
-
-.page p {
-  margin-bottom: 15px;
-  line-height: 1.6;
-}
-
-.page ol, .page ul {
-  margin-left: 20px;
-  margin-bottom: 15px;
-}
-
-.page li {
-  margin-bottom: 10px;
+.card p {
+  font-size: 14px;
+  color: #555;
   line-height: 1.5;
 }
 
-/* Stickers / badges */
-.sticker {
-  position: absolute;
-  right: 14px;
-  top: 14px;
-  background: #10b981;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 800;
-  padding: 6px 10px;
-  border-radius: 999px;
-  transform: rotate(6deg);
-  box-shadow: 0 6px 14px rgba(16,185,129,.35);
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--dark);
+  color: white;
+  margin-top: 60px;
 }
 
-.stamp {
-  display: inline-block;
-  border: 3px dashed #10b981;
-  border-radius: 10px;
-  padding: 8px 12px;
-  font-weight: 800;
-  margin: 10px 0 8px;
-  color: #065f46;
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Controls */
-.book-controls {
+.footer-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 2px solid var(--primary);
+}
+
+.social-icons {
   display: flex;
   gap: 15px;
-  justify-content: center;
-  margin: 20px auto 0;
-  flex-wrap: wrap;
+  margin: 20px 0;
 }
 
-.book-btn {
+.social-icons a {
   display: flex;
   align-items: center;
-  gap: 8px;
-  border: 1px solid #e2e8f0;
-  background: #fff;
-  border-radius: 12px;
-  padding: 12px 18px;
-  font-weight: 700;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Floating Action Button */
+.floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
   cursor: pointer;
-  box-shadow: 0 6px 14px rgba(2,6,23,.06);
-  transition: all 0.3s ease;
-  font-family: 'Noto Sans Bengali', sans-serif;
+  z-index: 99;
+  transition: all 0.3s;
 }
 
-.book-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(2,6,23,.12);
-  background: #f8fafc;
+.floating-btn:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-.page-indicator {
-  text-align: center;
-  margin-top: 15px;
-  font-weight: 600;
-  color: #64748b;
-}
-
-.toast {
-  text-align: center;
-  margin-top: 15px;
-  font-size: 14px;
-  color: #065f46;
-  display: none;
-  padding: 10px 15px;
-  background: #d1fae5;
-  border-radius: 8px;
-  max-width: 300px;
-  margin: 15px auto 0;
-}
-
-/* Book states */
-.book:not(.open) .page-left {
-  transform: rotateY(-88deg);
-}
-
-.book:not(.open) .page-right {
-  transform: rotateY(88deg);
-}
-
-.book.open .cover-left {
-  transform: rotateY(-160deg);
-}
-
-.book.open .cover-right {
-  transform: rotateY(160deg);
-}
-
-.book:not(.open) .cover-left {
-  transform: rotateY(-4deg);
-}
-
-.book:not(.open) .cover-right {
-  transform: rotateY(4deg);
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  margin-top: 50px;
-  padding: 20px;
-  color: #64748b;
-  font-size: 14px;
-  border-top: 1px solid #e2e8f0;
-}
-
-/* Responsive Design */
-@media (max-width: 1100px) {
-  .container {
-    flex-direction: column;
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
   }
   
   .sidebar {
-    width: 100%;
-    position: relative;
-    top: 0;
-    margin-bottom: 20px;
+    transform: translateX(-100%);
+    width: 280px;
   }
   
-  .sidebar a {
-    display: inline-flex;
-    width: calc(50% - 10px);
-    margin-bottom: 10px;
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .overlay.active {
+    display: block;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 768px) {
+  .header {
+    height: 350px;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .content {
+    padding: 30px 15px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
   .header h1 {
     font-size: 1.8rem;
   }
@@ -672,440 +470,263 @@ body {
     font-size: 1rem;
   }
   
-  .grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .contact-form {
-    grid-template-columns: 1fr;
-  }
-  
-  .form-group textarea {
-    grid-column: 1;
-  }
-  
-  .submit-btn {
-    grid-column: 1;
-  }
-  
-  .sidebar a {
-    width: 100%;
-  }
-  
-  .book {
-    height: auto;
-    max-width: 100%;
-  }
-  
-  .cover-left, .cover-right, .spine, .shadow {
-    display: none;
-  }
-  
-  .page {
-    position: relative;
-    width: 100%;
-    left: auto;
-    right: auto;
-    transform: none;
-    margin: 0 0 20px 0;
-  }
-  
-  .page::after {
-    display: none;
-  }
-  
-  .book-controls {
-    margin-top: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
+  .card {
     padding: 20px 15px;
   }
   
-  .section-title {
-    font-size: 1.3rem;
-  }
-  
-  .calendar-table th, .calendar-table td {
-    padding: 10px;
-    font-size: 14px;
-  }
-  
-  .book-btn {
-    padding: 10px 15px;
-    font-size: 14px;
-  }
-  
-  .book-controls {
-    flex-direction: column;
-    align-items: center;
+  .card img {
+    width: 100px;
+    height: 100px;
   }
 }
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
 </style>
 </head>
 <body>
-
-<!-- Header -->
-<header class="header">
-  <h1>Group 7</h1>
-  <p>কৃষি বিভাগ, নোয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</p>
-</header>
-
 <div class="container">
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h3>প্রোডাকশন টেকনোলোজি অফ</h3>
-    <a href="cucumber.html" target="_blank"><i class=""></i> শসা</a>
-    <a href="bean.html" target="_blank"><i class=""></i> শিম</a>
-    <a href="pointed gourd.html" target="_blank"><i class=""></i> পটল</a>
-    <a href="snake gourd.html" target="_blank"><i class=""></i> চিচিঙ্গা</a>
-    <a href="cauliflower.html" target="_blank"><i class=""></i> ফুলকপি</a>
-    <a href="cardamom.html" target="_blank"><i class=""></i> এলাচ</a>
-    <a href="cinnamon.html" target="_blank"><i class=""></i> দারচিনি</a>
-    <a href="#crop-calendar"><i class="far fa-calendar-alt"></i> চাষ ক্যালেন্ডার</a>
-    <a href="#officerContactForm" style="background:#17a2b8;"><i class="fas fa-user-tie"></i> কৃষি অফিসারের সাথে যোগাযোগ</a>
-    <a href="calculator.html" target="_blank"><i class="fas fa-calculator"></i> কৃষি খরচ ক্যালকুলেটর</a>
-    <a href="একের ভিতর সব.html" target="_blank"><i class="fas fa-book"></i> একের ভিতর সব</a>
-    <a href="#flipbook"><i class="fas fa-book-open"></i> প্রশ্নোত্তর ফ্লিপবুক</a>
+  <!-- Mobile menu toggle button -->
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  <!-- Overlay for mobile -->
+  <div class="overlay" id="overlay"></div>
+
+    <!-- Sidebar -->
+<aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <img src="agriculture dept.jpg" alt="NSTU Logo">
+    <h1>Agriculture Dept</h1>
   </div>
+  <ul class="sidebar-menu">
+    <li><a href="#" class="active"><i class="fas fa-landmark"></i> <span>History</span></a></li>
+    <li><a href="#teachers"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a></li>
+    <li><a href="#"><i class="fas fa-user-graduate"></i> <span>1st Year</span></a></li>
+    <li><a href="#"><i class="fas fa-user-graduate"></i> <span>2nd Year</span></a></li>
+    <li><a href="3rd year student.html"><i class="fas fa-user-graduate"></i> <span>3rd Year</span></a></li>
+    <li><a href="#"><i class="fas fa-user-graduate"></i> <span>4th Year</span></a></li>
+    <li><a href="notice.html"><i class="fas fa-bullhorn"></i> <span>Notice Board</span></a></li>
+    <li><a href="syllabus.html"><i class="fas fa-book"></i> <span>Syllabus</span></a></li>
+    <li><a href="#"><i class="fas fa-photo-video"></i> <span>Gallery</span></a></li>
+    <li><a href="research and sharing.html"><i class="fas fa-flask"></i> <span>Research</span></a></li>
+    <li><a href="academic calender.html"><i class="fas fa-calendar-alt"></i> <span>academic calender</span></a></li>
+    <li><a href="#alumni"><i class="fas fa-user-friends"></i> <span>Alumni</span></a></li>
+  </ul>
+</aside>
+
 
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Members Section -->
-    <h2 class="section-title"><i class="fas fa-users"></i> আমাদের সদস্যবৃন্দ</h2>
-    <section class="grid">
-      <article class="card">
-        <span class="badge">সদস্য-১</span>
-        <div class="cover"></div>
-        <div class="avatar-wrap"><img class="avatar" src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="সদস্য ১-এর ছবি" loading="lazy"></div>
-        <div class="content">
-          <h3 class="name">সাইফুল ইসলাম সাইফ</h3>
-          <div class="meta">
-            <div class="row"><span class="label">বিভাগ:</span><span class="value">কৃষি (NSTU)</span></div>
-            <div class="row"><span class="label">রোল:</span><span class="value">ASH2214026M</span></div>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <span class="badge">সদস্য-২</span>
-        <div class="cover"></div>
-        <div class="avatar-wrap"><img class="avatar" src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="সদস্য ২-এর ছবি" loading="lazy"></div>
-        <div class="content">
-          <h3 class="name">সুদীপ দাশ গুপ্ত</h3>
-          <div class="meta">
-            <div class="row"><span class="label">বিভাগ:</span><span class="value">কৃষি (NSTU)</span></div>
-            <div class="row"><span class="label">রোল:</span><span class="value">ASH2214042M</span></div>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <span class="badge">সদস্য-৩</span>
-        <div class="cover"></div>
-        <div class="avatar-wrap"><img class="avatar" src="https://i.ibb.co/KqP1tQ9/profile-3." alt="সদস্য ৩-এর ছবি" loading="lazy"></div>
-        <div class="content">
-          <h3 class="name">সুমাইয়া ইসলাম ফারিহা</h3>
-          <div class="meta">
-            <div class="row"><span class="label">বিভাগ:</span><span class="value">কৃষি (NSTU)</span></div>
-            <div class="row"><span class="label">রোল:</span><span class="value">BKH2214027F</span></div>
-          </div>
-        </div>
-      </article>
-      <article class="card">
-        <span class="badge">সদস্য-৪</span>
-        <div class="cover"></div>
-        <div class="avatar-wrap"><img class="avatar" src="https://i.ibb.co/T0Gm7Vc/profile-4.jpg" alt="সদস্য ৪-এর ছবি" loading="lazy"></div>
-        <div class="content">
-          <h3 class="name">সাদিয়া আক্তার</h3>
-          <div class="meta">
-            <div class="row"><span class="label">বিভাগ:</span><span class="value">কৃষি (NSTU)</span></div>
-            <div class="row"><span class="label">রোল:</span><span class="value">BBH2114022F(readd-22)</span></div>
-          </div>
-        </div>
-      </article>
-    </section>
-
-    <!-- Crop Calendar -->
-    <section id="crop-calendar" class="calendar-section">
-      <h2 class="section-title"><i class="far fa-calendar-alt"></i> চাষ ক্যালেন্ডার</h2>
-      <table class="calendar-table">
-        <tr><th>ফসল</th><th>বপনের মাস</th><th>ফসল তোলা</th></tr>
-        <tr><td>শসা</td><td>জানুয়ারি - মার্চ</td><td>মার্চ - মে</td></tr>
-        <tr><td>শিম</td><td>ফেব্রুয়ারি - এপ্রিল</td><td>মে - জুলাই</td></tr>
-        <tr><td>পটল</td><td>মার্চ - জুন</td><td>জুন - আগস্ট</td></tr>
-        <tr><td>চিচিঙ্গা</td><td>মার্চ - জুলাই</td><td>জুন - সেপ্টেম্বর</td></tr>
-        <tr><td>ফুলকপি</td><td>নভেম্বর - ফেব্রুয়ারি</td><td>ফেব্রুয়ারি - মার্চ</td></tr>
-        <tr><td>এলাচ</td><td>মার্চ - জুন</td><td>জুন - সেপ্টেম্বর</td></tr>
-        <tr><td>দারচিনি</td><td>মে - আগস্ট</td><td>আগস্ট - নভেম্বর</td></tr>
-      </table>
-    </section>
-
-    <!-- Officer Contact Form -->
-    <section id="officerContactForm" class="contact-section">
-      <h2 class="section-title"><i class="fas fa-user-tie"></i> কৃষি অফিসারের সাথে যোগাযোগ</h2>
-      <form class="contact-form" onsubmit="submitForm(event)">
-        <div class="form-group">
-          <label for="name">নাম</label>
-          <input type="text" id="name" required placeholder="আপনার নাম">
-        </div>
-        <div class="form-group">
-          <label for="email">ইমেল</label>
-          <input type="email" id="email" required placeholder="আপনার ইমেল">
-        </div>
-        <div class="form-group">
-          <label for="phone">মোবাইল</label>
-          <input type="tel" id="phone" required placeholder="মোবাইল নম্বর">
-        </div>
-        <div class="form-group">
-          <label for="message">মন্তব্য</label>
-          <textarea id="message" rows="4" required placeholder="আপনার বার্তা"></textarea>
-        </div>
-        <button type="submit" class="submit-btn">প্রেরণ করুন</button>
-        <p id="confirmationMsg" class="confirmation-msg"></p>
-      </form>
-    </section>
-
-    <!-- Q&A Flip Book Section -->
-    <section id="flipbook" class="qa-book-section" aria-label="প্রশ্নোত্তর ফ্লিপবুক">
-      <div class="qa-header">
-        <span class="qa-ribbon"><i class="fas fa-book-open"></i> প্রশ্নোত্তর ফ্লিপবুক</span>
+    <div class="header">
+      <div class="header-content">
+        <h1>Department of Agriculture</h1>
+        <p>Noakhali Science and Technology University</p>
+        <p>Excellence in Agricultural Education, Research and Innovation</p>
       </div>
-
-      <div class="book-wrap">
-        <div class="book" id="qaBook" role="region" aria-live="polite" aria-label="Q&A Book">
-          <div class="shadow" aria-hidden="true"></div>
-
-          <!-- Covers -->
-          <div class="cover-left" aria-hidden="true">
-            <div class="leather"></div>
-            <div class="cover-text">
-              <div class="cover-title">Question</div>
-              <div class="cover-sub">• Advisory • Q&A</div>
-            </div>
-          </div>
-          <div class="cover-right" aria-hidden="true">
-            <div class="leather"></div>
-            <div class="cover-text">
-              <div class="cover-title">Answer</div>
-              <div class="cover-sub">Tap "Open Book"</div>
-            </div>
-          </div>
-          <div class="spine" aria-hidden="true"></div>
-
-          <!-- Left Page (Question) -->
-          <article class="page page-left" id="qPage">
-            <div class="page-grid" aria-hidden="true"></div>
-            <div class="kicker">Question</div>
-            <h3>Which cucurbit suits coastal Khulna?</h3>
-            <p>
-              A farmer in <b>coastal Khulna</b> wants to grow cucurbits. Which crop would you suggest among
-              <em>cucumber</em>, <em>ridge gourd</em>, <em>snake gourd</em>, and <em>pointed gourd</em>—and why?
-            </p>
-            
-            <div class="sticker">Open →</div>
-
-            <!-- Mini notes strip -->
-            <div style="margin-top:20px;border-top:1px dashed #e5e7eb;padding-top:15px;font-size:14px;opacity:.85">
-              <b>Field context:</b> saline-prone soil • occasional waterlogging • humid tropics
-            </div>
-          </article>
-
-          <!-- Right Page (Answer) -->
-          <article class="page page-right" id="aPage">
-            <div class="page-grid" aria-hidden="true"></div>
-            <div class="kicker">Answer</div>
-            <h3 style="display:flex;align-items:center;gap:8px;">Best pick:
-              <span class="stamp">SNAKE GOURD (Trichosanthes cucumerina)</span>
-            </h3>
-
-            <h4>✅ Why Snake Gourd?</h4>
-            <ol>
-              <li><b>Better Tolerance to Salinity & Waterlogging:</b> Snake gourd performs better than cucumber and pointed gourd under moderate salinity (common in coastal Khulna). It also withstands temporary waterlogging during the rainy season, unlike cucumber which is highly sensitive.</li>
-              <li><b>Lower Disease Pressure:</b> Cucumber is very prone to downy mildew, mosaic virus, and fruit fly in coastal humid climates. Pointed gourd is vulnerable to wilt and requires vegetative propagation. Snake gourd is comparatively hardier with fewer major disease outbreaks.</li>
-              <li><b>Climatic Suitability:</b> The humid and warm climate of coastal Khulna is ideal for snake gourd growth and flowering. Pointed gourd prefers fertile loamy soils with low salinity, which is less common in Khulna.</li>
-              <li><b>Market Value & Demand:</b> Snake gourd has steady demand in local and urban markets. Farmers can harvest fruits continuously over a long period, ensuring regular income.</li>
-            </ol>
-
-            <h4>👉 Final Suggestion</h4>
-            <p>Among cucumber, snake gourd, and pointed gourd, the best choice for coastal Khulna is snake gourd due to its adaptability to saline soils, tolerance to waterlogging, and lower pest/disease susceptibility compared to cucumber and pointed gourd.</p>
-          </article>
-        </div>
-      </div>
-
-      <div class="book-controls" aria-label="বুক কন্ট্রোল">
-        <button class="book-btn" onclick="prevPage()"><i class="fas fa-arrow-left"></i> Previous</button>
-        <button class="book-btn" onclick="toggleBook()" id="toggleBtn" aria-controls="qaBook" aria-expanded="false"><i class="fas fa-book"></i> Open Book</button>
-        <button class="book-btn" onclick="nextPage()">Next <i class="fas fa-arrow-right"></i></button>
-        <button class="book-btn" onclick="copyAnswer()"><i class="far fa-copy"></i> Copy Answer</button>
-      </div>
-      <div class="page-indicator">Page <span id="currentPage">1</span> of <span id="totalPages">3</span></div>
-      <div class="toast" id="toast">✅ Answer copied!</div>
-    </section>
-
-    <!-- Footer -->
-    <div class="footer">
-      <p> এগ্রি ১৭তম আবর্তন | নোয়াখালী বিজ্ঞান ও প্রযুক্তি বিশ্ববিদ্যালয়</p>
     </div>
+
+    <div class="content">
+      <!-- Teachers -->
+      <section id="teachers">
+        <h2 class="section-title"><i class="fas fa-users"></i>Our Teachers</h2>
+        <div class="grid">
+          <!-- Example Teacher Card -->
+          <div class="card animate">
+            <span class="badge">Professor</span>
+            <img src="gazi sir.jpg" alt="Dr. Gazi Md.Mohsin">
+            <h3>Dr. Gazi Md.Mohsin</h3>
+            <p>Head of Department, Agriculture</p>
+          </div>
+          
+          <div class="card animate delay-1">
+            <span class="badge">Professor</span>
+            <img src="atik sir.jpg" alt="Dr. Md.Atiqur Rahman Bhuiyan">
+            <h3>Dr. Md.Atiqur Rahman Bhuiyan</h3>
+            <p>Plant Breeding & Genetics</p>
+          </div>
+          
+          <div class="card animate delay-2">
+            <span class="badge">Associate Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Pijush" alt="Dr. Pijush kanti Jhan">
+            <h3>Dr. Pijush kanti Jhan</h3>
+            <p>Entomology & Insect Molecular Physiology</p>
+          </div>
+          
+          <div class="card animate delay-3">
+            <span class="badge">Associate Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Rubel" alt="Dr. Mehede Hasan Rubel">
+            <h3>Dr. Mehede Hasan Rubel</h3>
+            <p>Genetics, Plant Breeding & Biotechnology</p>
+          </div>
+          
+          <div class="card animate delay-4">
+            <span class="badge">Associate Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Kawsar" alt="DR. Kawsar Hossen">
+            <h3>DR. Kawsar Hossen</h3>
+            <p>Agricultural Horticulture</p>
+          </div>
+          
+          <div class="card animate">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Nuruzzaman" alt="Dr. Mohammaed Nuruzzaman">
+            <h3>Dr. Mohammaed Nuruzzaman</h3>
+            <p>Soil Science & Agricultural Chemistry</p>
+          </div>
+          <div class="card animate delay-1">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Md. Shariful islam">
+            <h3>Md. Shariful islam</h3>
+            <p>Agricultural Extension</p>
+          </div>
+          
+          <div class="card animate delay-2">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Md.Shafiqul islam">
+            <h3>Md.Shafiqul islam</h3>
+            <p>Horticulture</p>
+          </div>
+          
+          <div class="card animate delay-3">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://i.ibb.co/6RJjM4H/profile-2.jpg" alt="Sabia Khan">
+            <h3>Sabia Khan</h3>
+            <p>Plant Pathology</p>
+          </div>
+          
+          <div class="card animate delay-4">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Dr.Nusrat jahan Methela">
+            <h3>Dr.Nusrat jahan Methela</h3>
+            <p>Agricultural Economics</p>
+          </div>
+          
+          <div class="card animate">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://i.ibb.co/9Hd2X5p/profile-3.jpg" alt="Shohrab Hossain">
+            <h3>Shohrab Hossain</h3>
+            <p>Agroforestry</p>
+          </div>
+        </div>
+      </section>
+            
+      <!-- Alumni Directory -->
+      <section id="alumni">
+        <h2 class="section-title"><i class="fas fa-user-friends"></i> Alumni Directory</h2>
+        <div class="grid">
+          <div class="card animate">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Rahat" alt="Md. Rahat Hossain">
+            <h3>Md. Rahat Hossain</h3>
+            <p>Researcher, IRRI Philippines</p>
+            <p>Batch: 2015</p>
+          </div>
+          <div class="card animate delay-1">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Faria" alt="Faria Sultana">
+            <h3>Faria Sultana</h3>
+            <p>Lecturer, BSMRAU</p>
+            <p>Batch: 2016</p>
+          </div>
+          <div class="card animate delay-2">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Abdul" alt="Abdul Karim">
+            <h3>Abdul Karim</h3>
+            <p>Agricultural Officer, DAE</p>
+            <p>Batch: 2014</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <img src="agriculture dept.jpg" alt="NSTU Agriculture Dept" class="footer-logo">
+        <h3>Department of Agriculture</h3>
+        <p>Noakhali Science and Technology University</p>
+        <p>Sonapur, Noakhali - 3814, Bangladesh</p>
+        
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p class="copyright">© 2025 Department of Agriculture, NSTU. All Rights Reserved.</p>
+      </div>
+    </footer>
   </main>
 </div>
 
+<div class="floating-btn">
+  <i class="fas fa-comment"></i>
+</div>
+
 <script>
-// Form submission
-function submitForm(e){
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const msgElement = document.getElementById('confirmationMsg');
-  msgElement.textContent = name + ', আপনার বার্তা সফলভাবে প্রেরণ হয়েছে!';
-  msgElement.style.display = 'block';
-  document.querySelector('#officerContactForm form').reset();
+  // Mobile menu toggle functionality
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
   
-  // Hide confirmation message after 5 seconds
-  setTimeout(() => {
-    msgElement.style.display = 'none';
-  }, 5000);
-}
-
-// Flip-book interactions
-(function(){
-  const book = document.getElementById('qaBook');
-  const btn = document.getElementById('toggleBtn');
-  const toast = document.getElementById('toast');
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+  });
   
-  // Q&A data - multiple pages
-  const qaData = [
-    {
-      question: "Which cucurbit suits coastal Khulna?",
-      answer: `
-        <h3 style="display:flex;align-items:center;gap:8px;">Best pick: <span class="stamp">SNAKE GOURD (Trichosanthes cucumerina)</span></h3>
-        <h4>✅ Why Snake Gourd?</h4>
-        <ol>
-          <li><b>Better Tolerance to Salinity & Waterlogging:</b> Snake gourd performs better than cucumber and pointed gourd under moderate salinity (common in coastal Khulna). It also withstands temporary waterlogging during the rainy season, unlike cucumber which is highly sensitive.</li>
-          <li><b>Lower Disease Pressure:</b> Cucumber is very prone to downy mildew, mosaic virus, and fruit fly in coastal humid climates. Pointed gourd is vulnerable to wilt and requires vegetative propagation. Snake gourd is comparatively hardier with fewer major disease outbreaks.</li>
-          <li><b>Climatic Suitability:</b> The humid and warm climate of coastal Khulna is ideal for snake gourd growth and flowering. Pointed gourd prefers fertile loamy soils with low salinity, which is less common in Khulna.</li>
-          <li><b>Market Value & Demand:</b> Snake gourd has steady demand in local and urban markets. Farmers can harvest fruits continuously over a long period, ensuring regular income.</li>
-        </ol>
-        <h4>👉 Final Suggestion</h4>
-        <p>Among cucumber, snake gourd, and pointed gourd, the best choice for coastal Khulna is snake gourd due to its adaptability to saline soils, tolerance to waterlogging, and lower pest/disease susceptibility compared to cucumber and pointed gourd.</p>
-      `
-    },
-    {
-      question: "",
-      answer: `
-        <h3 style="display:flex;align-items:center;gap:8px;">Best pick: <span class="stamp">SNAKE GOURD (Trichosanthes cucumerina)</span></h3>
-        <h4>✅ Why Snake Gourd?</h4>
-        <ol>
-           <li><b>Climatic Suitability:</b> The humid and warm climate of coastal Khulna is ideal for snake gourd growth and flowering. Pointed gourd prefers fertile loamy soils with low salinity, which is less common in Khulna.</li>
-          <li><b>Market Value & Demand:</b> Snake gourd has steady demand in local and urban markets. Farmers can harvest fruits continuously over a long period, ensuring regular income.</li>
-        </ol>
-        <h4>👉 Improvement tips</h4>
-        <p>Add compost or well-rotted manure to improve soil structure and fertility. Use mulch to conserve moisture and control weeds.</p>
-      `
-    },
-    {
-      question: "How to control pests in snake gourd cultivation?",
-      answer: `
-        <h3 style="display:flex;align-items:center;gap:8px;">Pest control: <span class="stamp">Integrated Pest Management</span></h3>
-        <h4>✅ Effective Methods</h4>
-        <ol>
-          <li><b>Cultural control:</b> Crop rotation and field sanitation to reduce pest incidence.</li>
-          <li><b>Biological control:</b> Use of natural enemies like ladybugs and parasitic wasps.</li>
-          <li><b>Chemical control:</b> If necessary, use insecticides like neem oil or pyrethrin-based products.</li>
-          <li><b>Physical control:</b> Use yellow sticky traps for flying insects.</li>
-        </ol>
-        <h4>👉 Prevention</h4>
-        <p>Regular monitoring and early intervention are crucial. Choose resistant varieties when available.</p>
-      `
-    }
-  ];
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
   
-  let currentPageIndex = 0;
-  const totalPages = qaData.length;
-  
-  // Update page content
-  function updatePageContent() {
-    const questionPage = document.getElementById('qPage');
-    const answerPage = document.getElementById('aPage');
-    const currentPageElement = document.getElementById('currentPage');
-    const totalPagesElement = document.getElementById('totalPages');
-    
-    // Update question and answer
-    questionPage.querySelector('h3').textContent = qaData[currentPageIndex].question;
-    answerPage.innerHTML = `
-      <div class="page-grid" aria-hidden="true"></div>
-      <div class="kicker">Answer</div>
-      ${qaData[currentPageIndex].answer}
-    `;
-    
-    // Update page indicator
-    currentPageElement.textContent = currentPageIndex + 1;
-    totalPagesElement.textContent = totalPages;
-  }
-  
-  // Navigation functions
-  window.nextPage = function() {
-    if (currentPageIndex < totalPages - 1) {
-      currentPageIndex++;
-      updatePageContent();
-    }
-  };
-  
-  window.prevPage = function() {
-    if (currentPageIndex > 0) {
-      currentPageIndex--;
-      updatePageContent();
-    }
-  };
-  
-  window.toggleBook = function(){
-    book.classList.toggle('open');
-    const open = book.classList.contains('open');
-    btn.innerHTML = open ? '<i class="fas fa-book"></i> Close Book' : '<i class="fas fa-book"></i> Open Book';
-    btn.setAttribute('aria-expanded', String(open));
-  };
-
-  window.copyAnswer = function(){
-    const text = document.getElementById('aPage').innerText.trim();
-    navigator.clipboard.writeText(text).then(() => {
-      toast.style.display = 'block';
-      setTimeout(() => {
-        toast.style.display = 'none';
-      }, 2000);
-    }).catch(err => {
-      console.error('Could not copy text: ', err);
-    });
-  };
-
-  // Open on first click/tap anywhere on the book (desktop)
-  book.addEventListener('click', (e) => {
-    if (window.innerWidth > 768 && !e.target.closest('.book-btn')) {
-      toggleBook();
-    }
-  }, {passive: true});
-
-  // Keyboard accessibility
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      const inViewport = book.getBoundingClientRect().top < window.innerHeight && 
-                         book.getBoundingClientRect().bottom > 0;
-      if (inViewport) { 
-        e.preventDefault(); 
-        toggleBook(); 
+  // Close sidebar when a menu item is clicked (on mobile)
+  const menuItems = document.querySelectorAll('.sidebar-menu a');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 992) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
       }
-    }
-    
-    // Left and right arrow keys for navigation
-    if (e.key === 'ArrowRight') {
-      nextPage();
-    } else if (e.key === 'ArrowLeft') {
-      prevPage();
-    }
-  }, {passive: false});
-  
-  // Initialize page content
-  updatePageContent();
-})();
-</script>
+    });
+  });
 
+  // Animation on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll('.animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    animatedElements.forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  });
+</script>
 </body>
 </html>
