@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Department of Agriculture - NSTU</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #2a9d8f;
+  --secondary: #e9c46a;
+  --accent: #e76f51;
+  --dark: #264653;
+  --light: #f8f9fa;
+  --card-bg: #ffffff;
+  --shadow: 0 10px 25px rgba(0,0,0,0.08);
+  --hover-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--light);
+  color: #334155;
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Mobile menu toggle button */
+.menu-toggle {
+  display: none;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 12px;
+  z-index: 1000;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  font-size: 18px;
+}
+
+/* Overlay for mobile */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 280px;
+  background: var(--dark);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  transition: transform 0.3s ease;
+  position: fixed;
+  height: 100vh;
+  z-index: 100;
+  box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+  overflow-y: auto;
+}
+
+.logo {
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.logo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 3px solid var(--primary);
+  transition: transform 0.5s;
+  object-fit: cover;
+}
+
+.logo img:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.logo h1 {
+  font-size: 1.3rem;
+  margin-top: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 2px;
+  background: var(--primary);
+  border-radius: 2px;
+}
+
+.sidebar-menu {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar-menu li {
+  width: 100%;
+}
+
+.sidebar-menu a {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  transition: all 0.3s;
+  border-radius: 0 25px 25px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidebar-menu a::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.sidebar-menu a:hover::before {
+  left: 100%;
+}
+
+.sidebar-menu a:hover, .sidebar-menu a.active {
+  background: rgba(42,157,143,0.15);
+  color: #fff;
+  border-left: 4px solid var(--primary);
+}
+
+.sidebar-menu i {
+  margin-right: 15px;
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+}
+
+.header {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://placehold.co/1200x600/2a9d8f/FFFFFF?text=Agriculture+Department') center/cover no-repeat;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.header h1 {
+  color: white;
+  font-size: 3.5rem;
+  text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
+  margin-bottom: 20px;
+  font-family: 'Roboto Slab', serif;
+  animation: slideDown 1.2s ease-out;
+}
+
+.header p {
+  color: rgba(255,255,255,0.9);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes slideDown {
+  0% { transform: translateY(-50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Content Section */
+.content {
+  padding: 50px 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: var(--dark);
+  margin-bottom: 35px;
+  display: inline-block;
+  position: relative;
+  font-family: 'Roboto Slab', serif;
+  font-weight: 600;
+}
+
+.section-title i {
+  margin-right: 12px;
+  color: var(--primary);
+}
+
+.section-title::after {
+  content: '';
+  width: 60px;
+  height: 4px;
+  background: var(--gradient);
+  display: block;
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* Grid Cards */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 25px 20px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: var(--gradient);
+}
+
+.card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--hover-shadow);
+}
+
+.card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+  border: 3px solid var(--primary);
+  padding: 3px;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--gradient);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--dark);
+  color: white;
+  margin-top: 60px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  border: 2px solid var(--primary);
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.social-icons a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: var(--primary);
+  transform: translateY(-3px);
+}
+
+.copyright {
+  margin-top: 20px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Floating Action Button */
+.floating-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  cursor: pointer;
+  z-index: 99;
+  transition: all 0.3s;
+}
+
+.floating-btn:hover {
+  transform: scale(1.1) rotate(15deg);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .menu-toggle {
+    display: block;
+  }
+  
+  .sidebar {
+    transform: translateX(-100%);
+    width: 280px;
+  }
+  
+  .sidebar.active {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .overlay.active {
+    display: block;
+  }
+  
+  .header h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    height: 350px;
+  }
+  
+  .header h1 {
+    font-size: 2rem;
+  }
+  
+  .content {
+    padding: 30px 15px;
+  }
+  
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+  
+  .card {
+    padding: 20px 15px;
+  }
+  
+  .card img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Mobile menu toggle button -->
+  <button class="menu-toggle" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </button>
+  
+  <!-- Overlay for mobile -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="logo">
+      <img src="https://placehold.co/100x100/2a9d8f/FFFFFF?text=NSTU" alt="NSTU Logo">
+      <h1>Agriculture Dept</h1>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="#" class="active"><i class="fas fa-landmark"></i> <span>History</span></a></li>
+      <li><a href="#teachers"><i class="fas fa-chalkboard-teacher"></i> <span>Teachers</span></a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> <span>1st Year</span></a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> <span>2nd Year</span></a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> <span>3rd Year</span></a></li>
+      <li><a href="#"><i class="fas fa-user-graduate"></i> <span>4th Year</span></a></li>
+      <li><a href="#"><i class="fas fa-bullhorn"></i> <span>Notice Board</span></a></li>
+      <li><a href="#"><i class="fas fa-book"></i> <span>Syllabus</span></a></li>
+      <li><a href="#"><i class="fas fa-photo-video"></i> <span>Gallery</span></a></li>
+      <li><a href="#"><i class="fas fa-flask"></i> <span>Research</span></a></li>
+      <li><a href="#"><i class="fas fa-calendar-alt"></i> <span>Academic Calendar</span></a></li>
+      <li><a href="#alumni"><i class="fas fa-user-friends"></i> <span>Alumni</span></a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="header">
+      <div class="header-content">
+        <h1>Department of Agriculture</h1>
+        <p>Noakhali Science and Technology University</p>
+        <p>Excellence in Agricultural Education, Research and Innovation</p>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Teachers -->
+      <section id="teachers">
+        <h2 class="section-title"><i class="fas fa-users"></i> Distinguished Faculty</h2>
+        <div class="grid">
+          <!-- Example Teacher Card -->
+          <div class="card animate">
+            <span class="badge">Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Gazi" alt="Dr. Gazi Md.Mohsin">
+            <h3>Dr. Gazi Md.Mohsin</h3>
+            <p>Head of Department, Agriculture</p>
+          </div>
+          
+          <div class="card animate delay-1">
+            <span class="badge">Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Atiqur" alt="Dr. Md.Atiqur Rahman Bhuiyan">
+            <h3>Dr. Md.Atiqur Rahman Bhuiyan</h3>
+            <p>Plant Breeding & Genetics</p>
+          </div>
+          
+          <div class="card animate delay-2">
+            <span class="badge">Associate Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Pijush" alt="Dr. Pijush kanti Jhan">
+            <h3>Dr. Pijush kanti Jhan</h3>
+            <p>Entomology & Insect Molecular Physiology</p>
+          </div>
+          
+          <div class="card animate delay-3">
+            <span class="badge">Associate Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Rubel" alt="Dr. Mehede Hasan Rubel">
+            <h3>Dr. Mehede Hasan Rubel</h3>
+            <p>Genetics, Plant Breeding & Biotechnology</p>
+          </div>
+          
+          <div class="card animate delay-4">
+            <span class="badge">Associate Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Kawsar" alt="DR. Kawsar Hossen">
+            <h3>DR. Kawsar Hossen</h3>
+            <p>Agricultural Horticulture</p>
+          </div>
+          
+          <div class="card animate">
+            <span class="badge">Assistant Professor</span>
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Dr.+Nuruzzaman" alt="Dr. Mohammaed Nuruzzaman">
+            <h3>Dr. Mohammaed Nuruzzaman</h3>
+            <p>Soil Science & Agricultural Chemistry</p>
+          </div>
+        </div>
+      </section>
+            
+      <!-- Alumni Directory -->
+      <section id="alumni">
+        <h2 class="section-title"><i class="fas fa-user-friends"></i> Alumni Directory</h2>
+        <div class="grid">
+          <div class="card animate">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Rahat" alt="Md. Rahat Hossain">
+            <h3>Md. Rahat Hossain</h3>
+            <p>Researcher, IRRI Philippines</p>
+            <p>Batch: 2015</p>
+          </div>
+          <div class="card animate delay-1">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Faria" alt="Faria Sultana">
+            <h3>Faria Sultana</h3>
+            <p>Lecturer, BSMRAU</p>
+            <p>Batch: 2016</p>
+          </div>
+          <div class="card animate delay-2">
+            <img src="https://placehold.co/120x120/2a9d8f/FFFFFF?text=Abdul" alt="Abdul Karim">
+            <h3>Abdul Karim</h3>
+            <p>Agricultural Officer, DAE</p>
+            <p>Batch: 2014</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      <div class="footer-content">
+        <img src="https://placehold.co/80x80/2a9d8f/FFFFFF?text=Agri" alt="NSTU Agriculture Dept" class="footer-logo">
+        <h3>Department of Agriculture</h3>
+        <p>Noakhali Science and Technology University</p>
+        <p>Sonapur, Noakhali - 3814, Bangladesh</p>
+        
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <p class="copyright">© 2023 Department of Agriculture, NSTU. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<div class="floating-btn">
+  <i class="fas fa-comment"></i>
+</div>
+
+<script>
+  // Mobile menu toggle functionality
+  const menuToggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  const overlay = document.getElementById('overlay');
+  
+  menuToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('active');
+    overlay.classList.toggle('active');
+  });
+  
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('active');
+    overlay.classList.remove('active');
+  });
+  
+  // Close sidebar when a menu item is clicked (on mobile)
+  const menuItems = document.querySelectorAll('.sidebar-menu a');
+  menuItems.forEach(item => {
+    item.addEventListener('click', () => {
+      if (window.innerWidth <= 992) {
+        sidebar.classList.remove('active');
+        overlay.classList.remove('active');
+      }
+    });
+  });
+
+  // Animation on scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = document.querySelectorAll('.animate');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    animatedElements.forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  });
+</script>
+</body>
+</html>
