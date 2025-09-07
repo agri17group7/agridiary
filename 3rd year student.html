@@ -1,494 +1,984 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>3rd Year Students - Agriculture Dept, NSTU</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-    --primary: #0ea5e9;
-    --secondary: #f97316;
-    --dark: #0f172a;
-    --card-bg: #ffffff;
-    --shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
-    --shadow-hover: 0 20px 25px -5px rgba(0,0,0,0.1);
-    --border-radius: 16px;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f1f5f9;
-    color: #334155;
-}
-
-/* Header */
-.header {
-    background: url('agri 10 th.jpg') center/cover no-repeat;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 15px;
-    color: white;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    text-align: center;
-}
-.header img {
-    height: 60px;
-    border-radius: 8px;
-    margin-bottom: 10px;
-}
-.header h1 {
-    font-size: 2rem;
-    margin: 10px 0;
-    text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
-}
-.header a {
-    display: inline-block;
-    margin-top: 10px;
-    background: var(--secondary);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.header a:hover {
-    background: var(--primary);
-}
-
-/* Content Grid */
-.content {
-    padding: 20px;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px;
-}
-
-/* Card */
-.card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    padding: 15px;
-    text-align: center;
-    transition: transform .3s, box-shadow .3s;
-}
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-.card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 8px;
-    object-fit: cover;
-}
-.card h3 {
-    margin: 8px 0 4px;
-    font-size: 1rem;
-}
-.card p {
-    margin: 2px 0;
-    font-size: 0.85rem;
-    color: #555;
-}
-.badge {
-    display: inline-block;
-    background: var(--primary);
-    color: white;
-    padding: 3px 7px;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    margin-bottom: 5px;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 1.5rem;
-    }
-    .card img {
-        width: 80px;
-        height: 80px;
-    }
-    .card h3 {
-        font-size: 0.95rem;
-    }
-    .card p {
-        font-size: 0.8rem;
-    }
-}
-@media (max-width: 480px) {
-    .header h1 {
-        font-size: 1.2rem;
-    }
-    .header a {
-        padding: 8px 15px;
-        font-size: 0.9rem;
-    }
-    .card img {
-        width: 70px;
-        height: 70px;
-    }
-    .card h3 {
-        font-size: 0.9rem;
-    }
-    .card p {
-        font-size: 0.75rem;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriConnect - 10th Batch Students | NSTU Agriculture Department</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --secondary-color: #8BC34A;
+            --accent-color: #FF9800;
+            --light-color: #F1F8E9;
+            --dark-color: #1B5E20;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .navbar {
+            background-color: var(--primary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 12px 0;
+        }
+        
+        .batch-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('agri 10 th.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            border: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .student-badge {
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 20px;
+            padding: 5px 12px;
+            font-size: 0.85rem;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--dark-color), #124116);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+        
+        .notification-bar {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .student-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .student-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 4px solid var(--secondary-color);
+        }
+        
+        .student-info {
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating-btn:hover {
+            animation: none;
+            transform: scale(1.1) rotate(90deg);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+        }
+        
+        .hero-buttons {
+            margin-top: 30px;
+        }
+        
+        .search-bar {
+            background-color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
-
-<!-- Header -->
-<div class="header">
-    <img src="NSTU logo.jpeg" alt="NSTU Logo">
-    <h1>Agriculture 10th Batch (NSTU - 17th)</h1>
-    <a href="index.html"><i class="fas fa-home"></i> Main Page</a>
-</div>
-
-<!-- Content Grid -->
-<div class="content">
-    <div class="grid">
-        <!-- Sample Card -->
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
+    <!-- Notification Bar -->
+    <div class="notification-bar">
+        <div class="container">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            Upcoming Event: Agricultural Innovation Fair on December 15-16, 2023
         </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 2</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 3</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 4</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
- <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div> <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-        <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-      <div class="card">
-            <span class="badge">Student</span>
-            <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo">
-            <h3>Student 1</h3>
-            <p><strong>Roll:</strong> 301</p>
-            <p><strong>Phone:</strong> 01700000001</p>
-            <p><strong>Session:</strong> 2022-23</p>
-            <p><strong>Blood Group:</strong> A+</p>
-        </div>
-
-        <!-- Repeat cards for all students (2-52) -->
-        <!-- You can copy-paste the above div and change content -->
     </div>
-</div>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://www.nstu.edu.bd/frontend/assets/images/logo.png" alt="NSTU Logo" height="40" class="d-inline-block align-text-top me-2">
+                <span class="fw-bold">AgriConnect</span> - Department of Agriculture
+            </a>
+            <div class="d-flex">
+                <a href="index.html" class="btn btn-outline-light btn-sm">Main Page</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Batch Header Section -->
+    <section class="batch-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">Agriculture 10th Batch</h1>
+            <p class="lead mb-4">NSTU 17th Batch - Department of Agriculture</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                    <div class="stats-number">52</div>
+                    <p class="text-muted">Students</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stats-number">8</div>
+                    <p class="text-muted">Blood Groups</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stats-number">2022-23</div>
+                    <p class="text-muted">Session</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stats-number">4</div>
+                    <p class="text-muted">Years Together</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <section class="py-3">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="search-bar">
+                        <div class="input-group">
+                            <input type="text" class="form-control border-0" placeholder="Search students by name, roll, or blood group..." aria-label="Search students">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Student Directory Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Meet Our Students</h2>
+            
+            <div class="row">
+                <!-- Student 1 -->
+                <div class="col-md-3 mb-4" data-aos="fade-up">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 1</h3>
+                        <p class="student-info"><strong>Roll:</strong> 301</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000001</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 2 -->
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 2</h3>
+                        <p class="student-info"><strong>Roll:</strong> 302</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000002</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 3 -->
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 3</h3>
+                        <p class="student-info"><strong>Roll:</strong> 303</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000003</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 4 -->
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 4</h3>
+                        <p class="student-info"><strong>Roll:</strong> 304</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000004</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 5 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 5</h3>
+                        <p class="student-info"><strong>Roll:</strong> 305</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000005</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 6 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 6</h3>
+                        <p class="student-info"><strong>Roll:</strong> 306</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000006</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 7 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 7</h3>
+                        <p class="student-info"><strong>Roll:</strong> 307</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000007</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 8 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 8</h3>
+                        <p class="student-info"><strong>Roll:</strong> 308</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000008</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 9 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 9</h3>
+                        <p class="student-info"><strong>Roll:</strong> 309</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000009</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 10 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 10</h3>
+                        <p class="student-info"><strong>Roll:</strong> 310</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000010</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 11 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 11</h3>
+                        <p class="student-info"><strong>Roll:</strong> 311</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000011</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 12 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 12</h3>
+                        <p class="student-info"><strong>Roll:</strong> 312</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000012</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 13 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 13</h3>
+                        <p class="student-info"><strong>Roll:</strong> 313</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000013</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 14 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 14</h3>
+                        <p class="student-info"><strong>Roll:</strong> 314</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000014</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 15 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 15</h3>
+                        <p class="student-info"><strong>Roll:</strong> 315</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000015</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 16 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 16</h3>
+                        <p class="student-info"><strong>Roll:</strong> 316</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000016</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 17 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 17</h3>
+                        <p class="student-info"><strong>Roll:</strong> 317</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000017</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 18 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 18</h3>
+                        <p class="student-info"><strong>Roll:</strong> 318</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000018</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 19 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 19</h3>
+                        <p class="student-info"><strong>Roll:</strong> 319</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000019</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 20 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 20</h3>
+                        <p class="student-info"><strong>Roll:</strong> 320</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000020</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 21 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 21</h3>
+                        <p class="student-info"><strong>Roll:</strong> 321</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000021</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 22 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 22</h3>
+                        <p class="student-info"><strong>Roll:</strong> 322</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000022</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 23 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 23</h3>
+                        <p class="student-info"><strong>Roll:</strong> 323</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000023</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 24 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 24</h3>
+                        <p class="student-info"><strong>Roll:</strong> 324</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000024</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 25 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 25</h3>
+                        <p class="student-info"><strong>Roll:</strong> 325</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000025</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 26 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 26</h3>
+                        <p class="student-info"><strong>Roll:</strong> 326</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000026</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 27 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 27</h3>
+                        <p class="student-info"><strong>Roll:</strong> 327</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000027</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 28 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 28</h3>
+                        <p class="student-info"><strong>Roll:</strong> 328</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000028</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 29 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 29</h3>
+                        <p class="student-info"><strong>Roll:</strong> 329</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000029</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 30 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 30</h3>
+                        <p class="student-info"><strong>Roll:</strong> 330</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000030</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 31 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 31</h3>
+                        <p class="student-info"><strong>Roll:</strong> 331</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000031</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 32 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 32</h3>
+                        <p class="student-info"><strong>Roll:</strong> 332</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000032</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 33 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 33</h3>
+                        <p class="student-info"><strong>Roll:</strong> 333</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000033</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 34 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 34</h3>
+                        <p class="student-info"><strong>Roll:</strong> 334</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000034</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 35 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 35</h3>
+                        <p class="student-info"><strong>Roll:</strong> 335</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000035</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 36 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 36</h3>
+                        <p class="student-info"><strong>Roll:</strong> 336</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000036</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 37 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 37</h3>
+                        <p class="student-info"><strong>Roll:</strong> 337</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000037</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 38 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 38</h3>
+                        <p class="student-info"><strong>Roll:</strong> 338</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000038</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 39 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 39</h3>
+                        <p class="student-info"><strong>Roll:</strong> 339</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000039</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 40 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 40</h3>
+                        <p class="student-info"><strong>Roll:</strong> 340</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000040</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 41 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 41</h3>
+                        <p class="student-info"><strong>Roll:</strong> 341</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000041</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 42 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="极简版学生卡片设计" alt="Student Photo" class="student-img">
+                        <h3>Student 42</h3>
+                        <p class="student-info"><strong>Roll:</strong> 342</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000042</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 43 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 43</h3>
+                        <p class="student-info"><strong>Roll:</strong> 343</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000043</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 44 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/gh" alt="Student Photo" class="student-img">
+                        <h3>Student 44</h3>
+                        <p class="student-info"><strong>Roll:</strong> 344</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000044</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 45 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/gh" alt="Student Photo" class="student-img">
+                        <h3>Student 45</h3>
+                        <p class="student-info"><strong>Roll:</strong>
+                        <p class="student-info"><strong>Phone:</strong> 01700000045</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 46 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card"></div>
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 46</h3>
+                        <p class="student-info"><strong>Roll:</strong> 346</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000046</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 47 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 47</h3>
+                        <p class="student-info"><strong>Roll:</strong> 347</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000047</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 48 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 48</h3>
+                        <p class="student-info"><strong>Roll:</strong> 348</p>
+                    
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 49 -->
+                <div class="col-md-3极简版学生卡片设计
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder极简版学生卡片设计" alt="Student Photo" class="student-img">
+                        <h3>Student 49</h3>
+                        <p class="student-info"><strong>Roll:</strong> 349</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000049</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> A+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 50 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 50</h3>
+                        <p class="student-info"><strong>Roll:</strong> 350</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000050</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> B+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 51 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9yQn1xN/student-placeholder.jpg" alt="Student Photo" class="student-img">
+                        <h3>Student 51</h3>
+                        <p class="student-info"><strong>Roll:</strong> 351</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000051</p>
+                        <p class="student极简版学生卡片设计
+                        <p class="student-info"><strong>Blood Group:</strong> O+</p>
+                    </div>
+                </div>
+                
+                <!-- Student 52 -->
+                <div class="col-md-3 mb-4">
+                    <div class="card student-card">
+                        <span class="student-badge">Student</span>
+                        <img src="https://i.ibb.co/9y极简版学生卡片设计" alt="Student Photo" class="student-img">
+                        <h3>Student 52</h3>
+                        <p class="student-info"><strong>Roll:</strong> 352</p>
+                        <p class="student-info"><strong>Phone:</strong> 01700000052</p>
+                        <p class="student-info"><strong>Session:</strong> 2022-23</p>
+                        <p class="student-info"><strong>Blood Group:</strong> AB+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <div class="floating-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Quick Assistance">
+        <i class="fas fa-robot fa-lg"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <h5>Agriculture Department</h5>
+                    <p>Noakhali Science and Technology University</p>
+                    <p>Sonapur, Noakhali-3814, Bangladesh</p>
+                    <p><i class="fas fa-phone me-2"></i> +880 XXXXX-XXXXX</p>
+                    <p><i class="fas fa-envelope me极简版学生卡片设计
+                </div>
+                <div class="col-md-6 mb-4">
+                    <h5>Connect With Us</h5>
+                    <div class="d-flex gap-3 fs-4">
+                        <a href="#" class="text-white"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="mt-4 bg-light">
+            <p class="text-center mb-0">© 2023 Department of Agriculture, NSTU. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Initialize tooltips
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        });
+        
+        // Simple search functionality
+        document.querySelector('.search-bar input').addEventListener('keyup', function() {
+            const searchText = this.value.toLowerCase();
+            const students = document.querySelectorAll('.student-card');
+            
+            students.forEach(student => {
+                const studentText = student.textContent.toLowerCase();
+                if (studentText.includes(searchText)) {
+                    student.parentElement.style.display = 'block';
+                } else {
+                    student.parentElement.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
