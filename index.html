@@ -332,6 +332,12 @@ body {
   color: #555;
   line-height: 1.5;
 }
+/* Contact Form */
+.contact-form { background: var(--card-bg); padding: 30px; border-radius: 12px; box-shadow: var(--shadow); max-width: 600px; margin: auto; }
+.contact-form h2 { text-align: center; margin-bottom: 25px; color: var(--dark); }
+.contact-form input, .contact-form textarea { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 8px; resize: none; font-family: 'Poppins', sans-serif; }
+.contact-form button { background: var(--gradient); color: #fff; border: none; padding: 12px 25px; border-radius: 50px; font-size: 16px; cursor: pointer; transition: all 0.3s; }
+.contact-form button:hover { transform: scale(1.05); }
 
 /* Footer */
 footer {
@@ -530,6 +536,7 @@ footer {
     <li><a href="research and sharing.html" target="_blank"><i class="fas fa-flask"></i> <span>Research</span></a></li>
     <li><a href="academic calender.html"><i class="fas fa-calendar-alt"></i> <span>academic calender</span></a></li>
     <li><a href="#alumni" target="_blank"><i class="fas fa-user-friends"></i> <span>Alumni</span></a></li>
+    <li><a href="#contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
   </ul>
 </aside>
 
@@ -651,6 +658,19 @@ footer {
             <p>Batch: 2014</p>
           </div>
         </div>
+      </section>
+      <!-- Contact Section -->
+      <section id="contact">
+        <h2 class="section-title"><i class="fas fa-envelope"></i>Contact Us</h2>
+        <form class="contact-form" action="https://formspree.io/f/mdkpkngg" method="POST">
+          <h2>Send a Message</h2>
+          <input type="text" name="name" placeholder="Your Name" required>
+          <input type="email" name="email" placeholder="Your Email" required>
+          <input type="number" name="number" placeholder="Your mobile number" required>
+          <input type="text" name="subject" placeholder="Subject" required>
+          <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
       </section>
     </div>
 
