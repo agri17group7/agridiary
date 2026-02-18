@@ -202,7 +202,7 @@ body {
 }
 
 .header h1 {
-  color: white;
+  color:white;
   font-size: 3.5rem;
   text-shadow: 2px 2px 12px rgba(0,0,0,0.7);
   margin-bottom: 20px;
@@ -535,8 +535,8 @@ footer {
     <li><a href="syllabus.html"><i class="fas fa-book"></i> <span>Syllabus</span></a></li>
     <li><a href="research and sharing.html" target="_blank"><i class="fas fa-flask"></i> <span>Research</span></a></li>
     <li><a href="academic calender.html"><i class="fas fa-calendar-alt"></i> <span>academic calender</span></a></li>
-    <li><a href="#alumni" target="_blank"><i class="fas fa-user-friends"></i> <span>Alumni</span></a></li>
-    <li><a href="#contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
+    <li><a href="http://localhost/result/index.php" target="_blank"><i class="fas fa-user-friends"></i> <span>Result</span></a></li>
+    <li><a href="contact"><i class="fas fa-envelope"></i> <span>Contact</span></a></li>
   </ul>
 </aside>
 
@@ -659,7 +659,7 @@ footer {
           </div>
         </div>
       </section>
-      <!-- Contact Section -->
+      <!-- Contact Section eta formspree te kora hoice -->
       <section id="contact">
         <h2 class="section-title"><i class="fas fa-envelope"></i>Contact Us</h2>
         <form class="contact-form" action="https://formspree.io/f/mdkpkngg" method="POST">
@@ -747,5 +747,29 @@ footer {
     });
   });
 </script>
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyCRvzu0XxA2i9-eL0c3h8IMAAuNYnRcITo",
+  authDomain: "agridiary-9d31f.firebaseapp.com",
+  projectId: "agridiary-9d31f",
+  storageBucket: "agridiary-9d31f.firebasestorage.app",
+  messagingSenderId: "725259319539",
+  appId: "1:725259319539:web:415c46c84ef2b9721e1f86"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+window.auth = auth;
+window.db = db;
+window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+</script>
+
 </body>
 </html>
